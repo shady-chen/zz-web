@@ -8,6 +8,7 @@ ul {
 a {
     text-decoration: none;
     color: #515151;
+    text-align: left;
 }
 
 p {
@@ -90,7 +91,7 @@ body {
     display: block;
     width: 0.46rem;
     height: 0.45rem;
-    margin: 0 auto;
+    margin: 3px auto;
 
 }
 

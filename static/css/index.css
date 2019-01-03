@@ -1,4 +1,13 @@
 /*-------首页部分样式--------*/
+
+.mt-btn{
+  width: 1.56rem;
+  height: 0.6rem;
+  border-radius: 5px;
+  color: #fff;
+  background: #f46054;
+}
+
 .modal {
     width: 7.5rem;
     height: 100%;
@@ -623,7 +632,7 @@
     background: -webkit-linear-gradient(left, #fd8247, #f46054); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(left, #fd8247, #f46054); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(left, #fd8247, #f46054); /* Firefox 3.6 - 15 */
-    background: linear-gradient(left, #fd8247, #f46054); /* 标准的语法 */
+    background: linear-gradient(to left, #fd8247, #f46054); /* 标准的语法 */
 }
 
 /*------个人中心的样式------*/
@@ -750,7 +759,7 @@
 .my_content .my_content_top .left {
     /*float: left;*/
     top: 0.05rem;
-    left: 1.66rem;
+    left: 0.66rem;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -779,7 +788,7 @@
 .my_content .my_content_top .right {
     /* float: right;*/
     top: 0.05rem;
-    right: 1.66rem;
+    right: 1.9rem;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -1046,7 +1055,7 @@
     background: -webkit-linear-gradient(left, #44c5fe, #079bff); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(left, #44c5fe, #079bff); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(left, #44c5fe, #079bff); /* Firefox 3.6 - 15 */
-    background: linear-gradient(left, #44c5fe, #079bff); /* 标准的语法 */
+    /*background: linear-gradient(to left, #44c5fe, #079bff); !* 标准的语法 *!*/
     color: #fff;
 }
 
@@ -1130,7 +1139,7 @@
     background: -webkit-linear-gradient(left, #44c5fe, #079bff); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(left, #44c5fe, #079bff); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(left, #44c5fe, #079bff); /* Firefox 3.6 - 15 */
-    background: linear-gradient(left, #44c5fe, #079bff); /* 标准的语法 */
+    background: linear-gradient(to left, #44c5fe, #079bff); /* 标准的语法 */
     color: #fff;
 }
 
@@ -1327,7 +1336,7 @@
     background: -webkit-linear-gradient(left, #44c5fe, #079bff); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(left, #44c5fe, #079bff); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(left, #44c5fe, #079bff); /* Firefox 3.6 - 15 */
-    background: linear-gradient(left, #44c5fe, #079bff); /* 标准的语法 */
+    background: linear-gradient(to left, #44c5fe, #079bff); /* 标准的语法 */
     color: #fff;
 }
 
@@ -1565,7 +1574,7 @@
     background: -webkit-linear-gradient(left, #44c5fe, #079bff); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(left, #44c5fe, #079bff); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(left, #44c5fe, #079bff); /* Firefox 3.6 - 15 */
-    background: linear-gradient(left, #44c5fe, #079bff); /* 标准的语法 */
+    background: linear-gradient(to left, #44c5fe, #079bff); /* 标准的语法 */
     color: #fff;
 }
 
@@ -1875,7 +1884,7 @@
     background: -webkit-linear-gradient(left, #44c5fe, #079bff); /* Safari 5.1 - 6.0 */
     background: -o-linear-gradient(left, #44c5fe, #079bff); /* Opera 11.1 - 12.0 */
     background: -moz-linear-gradient(left, #44c5fe, #079bff); /* Firefox 3.6 - 15 */
-    background: linear-gradient(left, #44c5fe, #079bff); /* 标准的语法 */
+    background: linear-gradient(to left, #44c5fe, #079bff); /* 标准的语法 */
     color: #fff;
 }
 
@@ -3364,7 +3373,7 @@
     font-size: 0.36rem;
     margin-top: 0.6rem;
     background: -webkit-linear-gradient(left, #44c5fe, #079bff);
-    background: linear-gradient(left, #44c5fe, #079bff);
+    background: linear-gradient(to left, #44c5fe, #079bff);
     color: #fff;
 }
 
