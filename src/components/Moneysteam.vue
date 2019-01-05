@@ -47,21 +47,19 @@
 </template>
 
 <script>
-  export default {
+  export default
+  {
     name: 'Moneysteam',
     data () {
       return {
         MoneysteamData: {},
       }
     },
-    methods: {
-      data () {
-        return {
-          MoneysteamData: {},
-        }
-      },
-      methods: {
-        getMoneysteamList () {
+
+    methods:
+    {
+        getMoneysteamList ()
+        {
           this.$http.post(this.$store.state.basePath + '/user/moneysteam/getMoneysteamByUid',
             {},
           ).then(
@@ -82,18 +80,18 @@
           console.log(id + '0000000000000000000000000000')
           self.$router.push({path: `/MoneysteamOne/${id}`})
         },
-      },
-      created () {
+    },
+    created ()
+    {
         this.getMoneysteamList()
         let self = this
-        console.log(id + '0000000000000000000000000000')
-        self.$router.push({path: `/MoneysteamOne/${id}`})
-      },
+
+
     },
-    created () {
-      this.getMoneysteamList()
-    }
+
+
   }
+
 </script>
 
 <style scoped>

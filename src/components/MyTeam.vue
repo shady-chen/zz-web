@@ -9,13 +9,13 @@
           <span>我的团队</span>
         </header>
          <div class="my-team">
-          <span class="my-span0">今日我的打码：<b class="my-b">20000</b></span>
+          <span class="my-span0">今日我的打码：<b class="my-b">{{data.self_steam}}</b></span>
 
-          <span class="my-span0">我的团队人数：<b class="my-b">21</b>   <a class="show-all  my-btn"> 查看详情 </a></span>
+          <span class="my-span0">我的团队人数：<b class="my-b">{{data.self_sons}}</b>   <a href="/#/showAllSons" class="show-all  my-btn"> 查看详情 </a></span>
 
-          <span class="my-span0">我的团队打码：<b class="my-b">21</b></span>
+          <span class="my-span0">我的团队打码：<b class="my-b">{{data.team_total}}</b></span>
 
-          <span class="my-span0">总的团队打码：<b class="my-b">21</b></span>
+          <span class="my-span0">总的团队打码：<b class="my-b">{{Number(data.team_total) +Number(data.self_steam) }}</b></span>
 
          </div>
       </section>
@@ -26,7 +26,25 @@
 
 <script>
   export default {
-    name: 'MyTeam'
+    name: 'MyTeam',
+    data(){
+      return {
+        data:{},
+      }
+    },
+    methods:{
+      getMyteam(){
+        this.$http.get(this.$store.state.basePath + '/user/user/getUserByInvitationCode').then(
+          (res) => {
+
+            this.data = res.body;
+
+          })
+      }
+    },
+    created(){
+      this.getMyteam();
+    }
   }
 </script>
 

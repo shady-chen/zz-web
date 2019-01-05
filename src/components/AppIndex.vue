@@ -208,15 +208,15 @@
        */
        isLogin(){
         this.$http.get(this.$store.state.basePath+'/user/user/getUser').then((res)=>{
-           if(res.body.phone){
+          if(!res.body){
+            window.location.href = '/#/';
+          }
+          if(res.body.phone){
               if(res.body.state == 2){
                  this.stateStr = "禁止抢红包";
               }else{
                 this.stateStr = "可以抢红包";
               }
-           }else
-           {
-             window.location.href = '/#/';
            }
         });
       }

@@ -72,8 +72,8 @@
               </a>
             </li>
             <li class="item">
-              <a href="/#/MyTeam"></a>
-              <a href="coupon.html">
+              <a href="/#/MyTeam">
+
                 <div>
 								<span class="icon_wrap">
 									<i class="icon icon_jlyh"></i>
@@ -82,6 +82,7 @@
                   <span class="couponNum"></span>
                   <i class="icon icon_zhankai"></i>
                 </div>
+
               </a>
             </li>
             <li class="item" id="addBank">
@@ -91,33 +92,13 @@
 									<i class="icon icon_card"></i>
 								</span>
                   <span class="item_detail">联系客服</span>
-                  <span class="item_detail">个人资料</span>
+
                   <i class="icon icon_zhankai"></i>
                 </div>
               </a>
             </li>
-            <li class="item">
-              <a href="inviteF.html">
-                <div>
-								<span class="icon_wrap">
-									<i class="icon icon_ewm"></i>
-								</span>
-                  <span class="item_detail">安全退出</span>
-                  <i class="icon icon_zhankai"></i>
-                </div>
-              </a>
-            </li>
-            <!--<li class="item">-->
-              <!--<a href="inviteF.html">-->
-                <!--<div>-->
-								<!--<span class="icon_wrap">-->
-									<!--<i class="icon icon_ewm"></i>-->
-								<!--</span>-->
-                  <!--<span class="item_detail">安全退出</span>-->
-                  <!--<i class="icon icon_zhankai"></i>-->
-                <!--</div>-->
-              <!--</a>-->
-            <!--</li>-->
+
+
           </ul>
         </div>
         <div style="height: 1rem;">
@@ -171,6 +152,10 @@
           {},
         ).then(
           (res) => {
+            if(!res.body){
+              window.location.href = '/#/';
+            }
+
               this.myUserInfo = res.body;
 
           })

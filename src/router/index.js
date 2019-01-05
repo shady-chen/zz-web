@@ -22,6 +22,8 @@ import WithdrawAdd from '@/components/WithdrawAdd'
 import Moneysteam from '@/components/Moneysteam'
 import MoneysteamOne from '@/components/MoneysteamOne'
 import MyTeam from '@/components/MyTeam'
+import showAllSons from '@/components/showAllSons'
+import Rules from '@/components/Rules'
 
 Vue.use(Router)
 
@@ -137,5 +139,15 @@ export default new Router({
       name: 'MyTeam',
       component: MyTeam
     },
+    {
+      path: '/showAllSons',
+      name: 'showAllSons',
+      component: showAllSons
+    },
+    {
+      path: '/Rules',
+      name: 'Rules',
+      component: Rules
+    }
   ]
 })

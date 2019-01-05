@@ -9,17 +9,17 @@
       <div class="setting_content">
 
         <ul class="setting_menu">
-          <li class="setting_menu_item">
-            <a href="settingFaq.html">
-              <div>
-							<span class="icon_wrap">
-								<i class="icon icon_cjwt"></i>
-							</span>
-                <span class="item_title">修改头像</span>
-                <i class="icon_zhankai"></i>
-              </div>
-            </a>
-          </li>
+          <!--<li class="setting_menu_item">-->
+            <!--<a href="settingFaq.html">-->
+              <!--<div>-->
+							<!--<span class="icon_wrap">-->
+								<!--<i class="icon icon_cjwt"></i>-->
+							<!--</span>-->
+                <!--<span class="item_title">修改头像</span>-->
+                <!--<i class="icon_zhankai"></i>-->
+              <!--</div>-->
+            <!--</a>-->
+          <!--</li>-->
           <li class="setting_menu_item">
             <a href="/#/ModifyPassword">
               <div>
@@ -32,7 +32,7 @@
             </a>
           </li>
           <li class="setting_menu_item">
-            <a href="settingFaq.html">
+            <a href="/#/rules">
               <div>
 							<span class="icon_wrap">
 								<i class="icon icon_cjwt"></i>
@@ -44,7 +44,7 @@
           </li>
 
           <li class="setting_menu_item">
-            <a href="contact_us.html">
+            <a @click="alet()">
               <div>
 							<span class="icon_wrap">
 								<i class="icon icon_contact"></i>
@@ -58,13 +58,27 @@
         </ul>
       </div>
 
-      <button class="exist-btn">安全退出</button>
+      <button class="exist-btn" @click="exits()">安全退出</button>
     </div>
 </template>
 
 <script>
   export default {
-    name: 'UserInfo'
+    name: 'UserInfo',
+    methods:{
+      alet(){
+        this.mui.alert('系统正在完善中。。。。')
+      },
+      exits(){
+        this.$http.get(this.$store.state.basePath + '/user/user/logout').then(
+          (res) => {
+            this.mui.alert('退出成功！',function(){
+              window.location.href = '/';
+            })
+
+          })
+      }
+    }
   }
 </script>
 
