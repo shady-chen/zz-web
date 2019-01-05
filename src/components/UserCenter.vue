@@ -72,7 +72,8 @@
               </a>
             </li>
             <li class="item">
-              <a href="/#/MyTeam">
+              <a href="/#/MyTeam"></a>
+              <a href="coupon.html">
                 <div>
 								<span class="icon_wrap">
 									<i class="icon icon_jlyh"></i>
@@ -90,6 +91,18 @@
 									<i class="icon icon_card"></i>
 								</span>
                   <span class="item_detail">联系客服</span>
+                  <span class="item_detail">个人资料</span>
+                  <i class="icon icon_zhankai"></i>
+                </div>
+              </a>
+            </li>
+            <li class="item">
+              <a href="inviteF.html">
+                <div>
+								<span class="icon_wrap">
+									<i class="icon icon_ewm"></i>
+								</span>
+                  <span class="item_detail">安全退出</span>
                   <i class="icon icon_zhankai"></i>
                 </div>
               </a>

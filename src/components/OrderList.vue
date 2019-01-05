@@ -9,84 +9,91 @@
       </header>
       <section class="tabs">
         <ul class="tabs_nav clearFix" id="tabs_nav" style="text-align: center">
-          <li class="active list_item" style="text-align: center"><a href="/#/OrderList">待付款<span id="count"></span></a></li>
+          <li class="active list_item" style="text-align: center"><a href="/#/OrderList">待付款<span id="count"></span></a>
+          </li>
           <li class=" list_item"><a href="/#/OrderList2">审核中<span></span></a></li>
           <li class="list_item"><a href="/#/OrderList3">已审核<span></span></a></li>
         </ul>
 
       </section>
-      <section class="tabs_wrap" id="tabs_wrap" >
-        <ul class="tabs_list">
-          <li class="list_item" v-for="item in orderData" style="width: 96%;margin: 10px auto;border: 1px solid #d7d7d7;padding: 0.2rem;
+      <section class="tabs_wrap" id="tabs_wrap">
+
+          <ul class="tabs_list">
+            <li class="list_item" v-for="item in orderData" style="width: 96%;margin: 10px auto;border: 1px solid #d7d7d7;padding: 0.2rem;
 -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;text-align: left!important;font-size: 0.3rem;
  background: #f6f6f6;">
-            <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
-              <span style="font-size: 0.3rem;color: #000;">总金额：<b style="color: red;font-size: 0.4rem;">{{item.money}}</b></span>
-              <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">{{item.create_time}}</span>
-            </p>
-            <p style="text-align: left!important;margin-bottom: 15px;">
+              <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
+                <span style="font-size: 0.3rem;color: #000;">总金额：<b
+                  style="color: red;font-size: 0.4rem;">{{item.money}}</b></span>
+                <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">{{item.create_time}}</span>
+              </p>
+              <p style="text-align: left!important;margin-bottom: 15px;">
 
-              <span style="font-size: 0.3rem;color: #000;">订单号：{{item.id}}</span>
-              <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">期数：{{item.packet_expect}}</span>
-            </p>
-            <p style="text-align: left!important;margin-bottom: 5px;overflow: hidden">
+                <span style="font-size: 0.3rem;color: #000;">订单号：{{item.id}}</span>
+                <span
+                  style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">期数：{{item.packet_expect}}</span>
+              </p>
+              <p style="text-align: left!important;margin-bottom: 5px;overflow: hidden">
               <span style="font-size: 0.3rem;color: #000;margin-top: 8px;display: block;float:left;">现状态：
                <b style="color: green;">{{byStatusReturnStr(item.status)}}</b>
               </span>
-              <button style="float: right;margin-right:10px;background: #0197ff;" v-show="item.status==1 " class="mt-btn" @click="getOneOrder(item.id)">付款</button>
-            </p>
+                <button style="float: right;margin-right:10px;background: #0197ff;" v-show="item.status==1 "
+                        class="mt-btn" @click="getOneOrder(item.id)">付款
+                </button>
+              </p>
 
 
-          </li>
-        </ul>
+            </li>
+          </ul>
+
       </section>
+
+      <!--	页面底部部分-->
+      <ul class="footer">
+        <li class="footer-item">
+          <a class="" href="/#/AppIndex">
+            <i class="icon icon_index "></i>
+            <p class="icon_title">首页</p>
+          </a>
+        </li>
+
+        <li class="footer-item">
+          <a href="/#/OrderList" class="">
+            <i class="icon icon_activity active" style="color: #fff;"></i>
+            <p class="icon_title">订单</p>
+          </a>
+        </li>
+        <li class="footer-item">
+          <a href="/#/WithdrawList" class="">
+            <i class="icon icon_invest"></i>
+            <p class="icon_title">提现</p>
+          </a>
+        </li>
+        <li class="footer-item">
+          <a href="/#/UserCenter" class="">
+            <i class="icon icon_my "></i>
+            <p class="icon_title ">我的</p>
+          </a>
+        </li>
+      </ul>
     </section>
-
-    <!--	页面底部部分-->
-    <ul class="footer">
-      <li class="footer-item">
-        <a  class="" href="/#/AppIndex">
-          <i class="icon icon_index "></i>
-          <p class="icon_title">首页</p>
-        </a>
-      </li>
-
-      <li class="footer-item">
-        <a href="/#/OrderList" class="">
-          <i class="icon icon_activity active" style="color: #fff;"></i>
-          <p class="icon_title">订单</p>
-        </a>
-      </li>
-      <li class="footer-item">
-        <a href="/#/WithdrawList" class="">
-          <i class="icon icon_invest"></i>
-          <p class="icon_title">提现</p>
-        </a>
-      </li>
-      <li class="footer-item">
-        <a href="/#/UserCenter" class="">
-          <i class="icon icon_my "></i>
-          <p class="icon_title ">我的</p>
-        </a>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script>
   export default {
     name: 'OrderList',
-    data(){
-      return{
-          orderData:{},
+    data () {
+      return {
+        orderData: {},
       }
     },
-    methods:{
-      getOrderList(){
+    methods: {
+      getOrderList () {
         this.$http.post(this.$store.state.basePath + '/user/date/getOrder',
           {
-            state:0,
-            status:1
+            state: 0,
+            status: 1
           },
         ).then(
           (res) => {
@@ -95,46 +102,46 @@
               console.log(res)
               this.mui.alert(res.body.msg, '提示', '确认')
             }
-            if(res.body.status == 200){
-              this.orderData = res.body.data;
+            if (res.body.status == 200) {
+              this.orderData = res.body.data
             }
           })
       },
 
-      getOneOrder(id){
-        let self = this;
-        console.log(id+'0000000000000000000000000000')
-        self.$router.push({path:`/OrderOne/${id}`});
+      getOneOrder (id) {
+        let self = this
+        console.log(id + '0000000000000000000000000000')
+        self.$router.push({path: `/OrderOne/${id}`})
         // window.location.href = '/#/OrderOne';
 
       },
-      byStatusReturnStr(status){
+      byStatusReturnStr (status) {
         let str = '未知'
         switch (status) {
           case 0:
             str = '已过期'
-            break;
+            break
           case 1:
             str = '未付款'
-            break;
+            break
           case 2:
             str = '审核中'
-            break;
+            break
           case 3:
             str = '审核通过'
-            break;
+            break
           case 4:
             str = '审核未通过'
-            break;
+            break
           default:
             str = '未知状态'
-            break;
+            break
         }
-        return str;
+        return str
       }
     },
-    created(){
-      this.getOrderList();
+    created () {
+      this.getOrderList()
 
     },
   }

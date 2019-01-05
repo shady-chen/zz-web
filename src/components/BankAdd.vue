@@ -9,35 +9,79 @@
     <div>
       <ul class="tabs_list">
         <li class="item-list2">
-          <div  class="my-divs">
+          <div class="my-divs">
             <span class="my-span">账户姓名：</span>
 
-             <input type="text" name="remark" class="my-input"
-                    v-model="real_name" placeholder="张三、李四"/>
+            <input type="text" name="remark" class="my-input"
+                   v-model="real_name" placeholder="张三、李四"/>
 
           </div>
-          <div  class="my-divs">
+          <div class="my-divs">
             <span class="my-span">数字账号：</span>
-              <input type="text" name="remark" class="my-input" v-model="bank_num" placeholder="6228481789/ 123345@qq.com / 13800080000"/>
+            <input type="text" name="remark" class="my-input" v-model="bank_num"
+                   placeholder="6228481789/ 123345@qq.com / 13800080000"/>
 
           </div>
-          <div  class="my-divs">
+          <div class="my-divs">
             <span class="my-span">账户类型：</span>
 
-              <input type="text" name="remark" class="my-input" v-model="bank_which" placeholder="支付宝/建设银行"/>
+            <input type="text" name="remark" class="my-input" v-model="bank_which" placeholder="支付宝/建设银行"/>
 
 
           </div>
-          <div  class="my-divs">
+          <div class="my-divs">
             <span class="my-span">有开户行： </span>
-              <input type="text" name="remark" class="my-input" v-model="bank_where"
-                     placeholder="支付宝可不用填写此栏，银行卡请写 如上海第三分行"/>
+            <input type="text" name="remark" class="my-input" v-model="bank_where"
+                   placeholder="支付宝可不用填写此栏，银行卡请写 如上海第三分行"/>
 
           </div>
 
-          <div  class="my-divs">
-            <button type="submit" style="background: #0197ff;color: #fff;margin:0 auto;display: block; width: 50%;height: 1rem;font-size: 0.5rem;" class="mt-btn" @click="add">添加</button>
+          <div class="my-divs">
+            <button type="submit"
+                    style="background: #0197ff;color: #fff;margin:0 auto;display: block; width: 50%;height: 1rem;font-size: 0.5rem;"
+                    class="mt-btn" @click="add">添加
+            </button>
           </div>
+        <li class="list_item" style="width: 96%;margin: 0 auto;border: 1px solid #d7d7d7;padding: 0.2rem;
+-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;text-align: left!important;font-size: 0.3rem;
+ background: #f6f6f6">
+          <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
+            <span style="font-size: 0.3rem;color: #000;">姓名：
+              <!--<b style="color: red;font-size: 0.4rem;">-->
+              <!--{{bankData.real_name}}-->
+              <!--</b>-->
+             <input type="text" name="remark" style="width: 260px;height:  0.5rem;margin-top: 3px;"
+                    v-model="real_name"/>
+
+            </span>
+            <!--<span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">开户行：{{bankData.bank_where}}</span>-->
+          </p>
+          <p style="text-align: left!important;margin-bottom: 15px;">
+            <span style="font-size: 0.3rem;color: #000;">银行卡类型：
+              <!--{{bankData.bank_which}}-->
+              <input type="text" name="remark" style="width: 260px;height:  0.5rem;margin-top: 3px"
+                     v-model="bank_which"/>
+
+            </span>
+          </p>
+          <p style="text-align: left!important;margin-bottom: 15px;">
+            <span style="font-size: 0.3rem;color: #000;">开户行：
+              <!--{{bankData.bank_which}}-->
+              <input type="text" name="remark" style="width: 280px;height:  0.5rem;margin-top: 3px"
+                     v-model="bank_where"/>
+
+            </span>
+          </p>
+          <p style="text-align: left!important;margin-bottom: 15px;">
+            <span style="font-size: 0.3rem;color: #000;">银行卡账号：
+              <!--{{bankData.bank_which}}-->
+              <input type="text" name="remark" style="width: 260px;height:  0.5rem;margin-top: 3px" v-model="bank_num"/>
+
+            </span>
+          </p>
+          <p style="text-align: left!important;margin-bottom: 15px;">
+            <button type="submit" style="background: #0197ff;color: #fff;" class="mt-btn" @click="add">添加</button>
+          </p>
         </li>
       </ul>
 
@@ -59,33 +103,42 @@
         bank_num: '',
       }
     },
-    methods: {
-      add () {
-        let self = this
-        // console.log(self.$route.params.id)
-        this.$http.post(this.$store.state.basePath + '/user/bank/addAppBanks',
-          {
-            real_name: this.real_name,
-            bank_where: this.bank_where,
-            bank_which: this.bank_which,
-            bank_num: this.bank_num,
-          },
-        ).then(
-          (res) => {
-            console.log(res)
-            if (res.body.status == 0) {
-              console.log(res)
-              this.mui.alert(res.body.msg, '提示', '确认')
-            }
-            if (res.body.status == 200) {
-              window.location.href = '/#/BankList'
 
-            }
-          })
-      },
-    },
+    methods:
+      {
+        add () {
 
+          this.$http.post(this.$store.state.basePath + '/user/bank/addAppBanks',
+            {
+              real_name: this.real_name,
+              bank_where: this.bank_where,
+              bank_which: this.bank_which,
+              bank_num: this.bank_num,
+              real_name: this.real_name,
+              bank_where: this.bank_where,
+              bank_which: this.bank_which,
+              bank_num: this.bank_num,
+            }).then
+          (
+            (res) => {
+
+              if (res.body.status == 0) {
+
+                this.mui.alert(res.body.msg, '提示', '确认')
+              }
+              if (res.body.status == 200) {
+                window.location.href = '/#/BankList'
+                if (res.body.status == 200) {
+                  window.location.href = '/#/BankList'
+
+                }
+              }
+            })
+        },
+
+      }
   }
+
 </script>
 
 <style scoped>

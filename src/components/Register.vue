@@ -51,7 +51,7 @@
 
             <div class="item">
               <input type="text" id="valicode" placeholder="短信验证码" maxlength="4" v-model="code" />
-              <span class="get_code" id="get_valicode">获取验证码</span>
+              <span class="get_code" id="get_valicode" @click="getCode">获取验证码</span>
             </div>
             <div class="item">
               <input type="text" id="init_code" placeholder="推荐人号码" maxlength="20" v-model="invitation_code" />
@@ -91,6 +91,24 @@
     },
     methods: {
 
+      getCode(){
+        this.$http.post(this.$store.state.basePath + '/user/user/getCode',
+          {
+            phone: this.phone,
+          },
+        ).then(
+          (res) => {
+            if (res.body.status == 0) {
+              console.log(res)
+              this.mui.alert(res.body.msg, '提示', '确认')
+            }
+            if(res.body.status == 200){
+              this.mui.alert(res.body.msg, '提示', '确认',function(){
+                window.location.href = '/#/';
+              })
+            }
+          })
+      },
 
 
       register () {

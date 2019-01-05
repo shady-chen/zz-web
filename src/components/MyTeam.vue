@@ -21,6 +21,7 @@
       </section>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -28,6 +29,7 @@
     name: 'MyTeam'
   }
 </script>
+
 
 
 <style scoped>
@@ -76,4 +78,5 @@
     color: #355ae5;
 
   }
+
 </style>
