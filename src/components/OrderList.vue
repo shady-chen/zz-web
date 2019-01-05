@@ -4,7 +4,7 @@
     <section class="container" style="background: #fff;">
       <header class="header investment_title" style="display: block;">
 
-        <span>订单记录</span>
+        <span>通知列表</span>
 
       </header>
       <section class="tabs">

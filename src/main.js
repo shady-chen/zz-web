@@ -27,8 +27,8 @@ const store = new Vuex.Store({
   state: {
     flag: true,
     asd: 1,
-    basePath: 'http://www.zz.com',
-    myBasePath: 'http://www.zz.com',
+    basePath: '',
+    myBasePath: '',
     count: 0,//红包个数
     expect: 20181212001,//红包期数
   }

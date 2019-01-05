@@ -98,22 +98,15 @@
           },
         ).then(
           (res) => {
-            if (res.body.status == 0) {
-              console.log(res)
               this.mui.alert(res.body.msg, '提示', '确认')
-            }
-            if(res.body.status == 200){
-              this.mui.alert(res.body.msg, '提示', '确认',function(){
-                window.location.href = '/#/';
-              })
-            }
-          })
+          });
       },
 
 
       register () {
         let phone = this.phone
         let password = this.userpass
+        let password2 = this.userpass2
         let code = this.code
         let invitation_code = this.invitation_code
         if (phone == '' || phone == null || phone.length != 11) {
@@ -122,6 +115,10 @@
         }
         if (password == '' || password == null || password.length < 6) {
           this.mui.toast('密码号码格式有错!!', {duration: 'short', type: 'div'})
+          return false
+        }
+        if (password != password2) {
+          this.mui.toast('两次密码不一致!!', {duration: 'short', type: 'div'})
           return false
         }
         if (code == '' || code == null) {
