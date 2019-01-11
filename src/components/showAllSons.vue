@@ -21,7 +21,7 @@
                 style="color: red;font-weight: 700;">{{item.phone}}</span>
               </p>
 
-              <p style="text-align: left!important;font-size: 0.3rem;margin-bottom: 15px;">今日打码量：
+              <p style="text-align: left!important;font-size: 0.3rem;margin-bottom: 15px;">今日总金额：
                 <span>{{item.today_total}}</span>
               </p>
 

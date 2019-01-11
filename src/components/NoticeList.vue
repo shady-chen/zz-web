@@ -8,7 +8,7 @@
           <a href="/#/UserCenter">
             <i class="icon"></i>
           </a>
-          <span>资金明细</span>
+          <span>系统通知列表</span>
 
         </header>
 

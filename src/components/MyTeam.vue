@@ -8,14 +8,14 @@
           </a>
           <span>我的团队</span>
         </header>
-         <div class="my-team">
-          <span class="my-span0">今日我的打码：<b class="my-b">{{data.self_steam}}</b></span>
+         <div class="my-team" style="">
+          <span class="my-span0">累计今天金额：<b class="my-b">{{data.self_steam}}</b></span>
 
           <span class="my-span0">我的团队人数：<b class="my-b">{{data.self_sons}}</b>   <a href="/#/showAllSons" class="show-all  my-btn"> 查看详情 </a></span>
 
-          <span class="my-span0">我的团队打码：<b class="my-b">{{data.team_total}}</b></span>
+          <span class="my-span0">我的团队金额：<b class="my-b">{{data.team_total}}</b></span>
 
-          <span class="my-span0">总的团队打码：<b class="my-b">{{Number(data.team_total) +Number(data.self_steam) }}</b></span>
+          <span class="my-span0">总的团队金额：<b class="my-b">{{Number(data.team_total) +Number(data.self_steam) }}</b></span>
 
          </div>
       </section>
@@ -69,11 +69,12 @@
     margin-top: 3px;
   }
   .my-team{
-    background: #e9e9e9;
+    background:url('../assets/team5.jpg') 100% 100%;
+    background-size: cover;
     border: 1px solid #e2e2e2;
     width: 90%;
     margin:1.28rem auto;
-    padding: 0.2rem;
+    padding: 0.8rem 0.33rem;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -84,6 +85,8 @@
     display: block;
     text-align:left!important;
     margin-bottom: 15px;
+    color: #1833ff;
+    font-weight: 700;
   }
   .my-b{
     font-size: 0.39rem;
@@ -93,7 +96,7 @@
   .show-all{
     float: right;
     padding: 3px;
-    color: #355ae5;
+    color: #3300e5;
 
   }
 

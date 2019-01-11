@@ -80,7 +80,9 @@
                    placeholder="请输入短信验证码"
             />
             <button type="submit" style="background: #0197ff;color: #fff;float:left;margin-left: 5px;height: 0.5rem;" class="mt-btn"
-                    @click="getPhoneMess">获取</button>
+                    @click="getPhoneMess" v-show="show">获取</button>
+            <button type="submit" style="background: #ccc;color: #fff;float:left;margin-left: 5px;height: 0.5rem;" class="mt-btn"
+                    v-show="!show">{{count}}秒</button>
           </div>
 
           <div style="text-align: left!important;margin-bottom: 25px;color: #000;overflow:hidden;">
@@ -119,6 +121,8 @@ height: 1rem;" class="mt-btn" @click="add">提现</button>
         money:'',
         phoneMess:'',
         remark:'',
+        show:true,
+        count:'',
       }
     },
     methods:{
@@ -135,7 +139,21 @@ height: 1rem;" class="mt-btn" @click="add">提现</button>
               this.mui.alert(res.body.msg, '提示', '确认')
             }
             if(res.body.status == 200){
-              this.mui.alert(res.body.msg, '提示', '确认')
+              this.mui.alert(res.body.msg, '提示', '确认');
+              const TIME_COUNT = 60;
+              if (!this.timer) {
+                this.count = TIME_COUNT;
+                this.show = false;
+                this.timer = setInterval(() => {
+                  if (this.count > 0 && this.count <= TIME_COUNT) {
+                    this.count--;
+                  } else {
+                    this.show = true;
+                    clearInterval(this.timer);
+                    this.timer = null;
+                  }
+                }, 1000)
+              }
             }
           })
       },
@@ -217,6 +235,14 @@ height: 1rem;" class="mt-btn" @click="add">提现</button>
               this.mui.alert(res.body.msg, '提示', '确认')
             }
             if(res.body.status == 200){
+              if(res.body.data.length == 0)
+              {
+                this.mui.alert("请先添加您的提现卡", '提示', '确认',function () {
+                  window.location.href = '/#/BankAdd';
+                })
+                return;
+              }
+
               this.bankData = res.body.data;
             }
           })

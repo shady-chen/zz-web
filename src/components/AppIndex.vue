@@ -1,9 +1,9 @@
 <template>
 
   <div style="height: 100%;">
-    <header class="mui-bar mui-bar-nav">
-		<h1 class="mui-title">让红包飞</h1>
-	</header>
+    <header class="mui-bar mui-bar-nav" >
+		<h1 class="mui-title">首页</h1>
+	  </header>
     <div class="mui-card" style="margin-top: 50px;height: 100%;">
       <!--页眉，放置标题-->
       <div  style="width: 100%;padding: 10px 2px;height: 57px;text-align: left;">
@@ -12,7 +12,7 @@
 
            <div style="float:left;width: 60%;padding-left: 10px;color: #000;">
               <p style="margin-bottom:5px;font-size:15px;color: #000;">
-                <b>当前期数：<b style="color: #c41c00;">{{expect==0?'期数异常恢复中':expect}}</b></b>
+                <b>当前期数：<b style="color: #c41c00;">{{expect==0?'加载中...':expect}}</b></b>
               </p>
               <p style="font-size:15px;color: #000;">
                 <b>下前期数：<b style="color: #c47784;">{{expectAddOne(expect)}}</b></b>
@@ -25,7 +25,7 @@
       </div>
       <!--内容区-->
       <div class="mui-card-content">
-        <img src="../assets/1.jpg" style="width:100%" @click="rob"/>
+        <img src="../assets/2.jpg" style="width:100%;height: 400px;" @click="rob"/>
       </div>
       <!--页脚，放置补充信息或支持的操作-->
 
@@ -37,17 +37,17 @@
         <!--<span class="mui-icon iconfont icon-wode mui-badge mui-badge-danger"></span>-->
       </div>
 
-      <div class="mui-card-header" style="text-align: left;">
-        <span class="mui-icon iconfont icon-wode " style="font-size: 0.4rem;">当前返佣比例：
-            <b class="my-count" style="width: auto;padding:1px 10px;background: #0093ff;">{{bonus_money}}</b>
-        </span>
-      </div>
+      <!--<div class="mui-card-header" style="text-align: left;">-->
+        <!--<span class="mui-icon iconfont icon-wode " style="font-size: 0.4rem;">当前返佣比例：-->
+            <!--<b class="my-count" style="width: auto;padding:1px 10px;background: #0093ff;">{{bonus_money}}</b>-->
+        <!--</span>-->
+      <!--</div>-->
 
-      <div class="mui-card-header" style="text-align: left;">
-        <span class="mui-icon iconfont icon-wode " style="font-size: 0.4rem;">您对当前红包的状态：
-            <b class="my-count" style="width: auto;padding:1px 10px;background: #ff60de;font-size: 0.3rem">{{stateStr}}</b>
-        </span>
-      </div>
+      <!--<div class="mui-card-header" style="text-align: left;">-->
+        <!--<span class="mui-icon iconfont icon-wode " style="font-size: 0.4rem;">您对当前红包的状态：-->
+            <!--<b class="my-count" style="width: auto;padding:1px 10px;background: #ff60de;font-size: 0.3rem">{{stateStr}}</b>-->
+        <!--</span>-->
+      <!--</div>-->
 
 
     </div>
@@ -84,7 +84,10 @@
 
   </div>
 </template>
-<style>
+<style scoped>
+  body{
+    background: #e7e7e7;
+  }
   .my-span{
     display: block;
     height: 40px;
@@ -131,7 +134,7 @@
                expect:this.expect
            }).then((res)=>{
                if(res.body.status == 200){
-                   this.mui.alert(res.body.msg);
+                   this.mui.alert('你已成功抢到￥ ' + res.body.money);
                    this.$set(this,"count",res.body.amount);
                }else{
                    console.log(res.body)
@@ -199,7 +202,7 @@
       expectAddOne(str){
         let num = Number(str);
         if(!num){
-          return "正在恢复中......."
+          return "加载中..."
         }
         return num + 1;
       },
@@ -227,7 +230,7 @@
       this.timeId = setInterval(function(){
         that.getLastPacket();
 
-      },1000);
+      },2000);
     },
     destroyed(){
       clearInterval(this.timeId);

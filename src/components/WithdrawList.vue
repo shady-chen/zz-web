@@ -44,7 +44,7 @@
       </section>
       <ul class="footer">
         <li class="footer-item">
-          <a  class="">
+          <a  href="/#/appIndex">
             <i class="icon icon_index "></i>
             <p class="icon_title">首页</p>
           </a>

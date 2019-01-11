@@ -29,7 +29,7 @@
     <!--<button class="mui-btn mui-btn-danger" @click="backLogin">{{backText}}</button>-->
 
     <div class="login_bg">
-      <img src="/static/img/login_bg.png">
+      <img src="../assets/img/login_bg.png">
       <div>
         <div class="register_title" style="display:none;">
           <a >
@@ -51,7 +51,8 @@
 
             <div class="item">
               <input type="text" id="valicode" placeholder="短信验证码" maxlength="4" v-model="code" />
-              <span class="get_code" id="get_valicode" @click="getCode">获取验证码</span>
+              <span class="get_code" id="get_valicode" v-show="sendMess" @click="getCode">获取验证码</span>
+              <span class="get_code" id="get_valicode2" v-show="!sendMess" style="background: #ccc">{{count}}秒</span>
             </div>
             <div class="item">
               <input type="text" id="init_code" placeholder="推荐人号码" maxlength="20" v-model="invitation_code" />
@@ -87,6 +88,8 @@
         code: '',
         invitation_code: '',
         phone:null,
+        sendMess:true,
+        count:''
       }
     },
     methods: {
@@ -98,7 +101,22 @@
           },
         ).then(
           (res) => {
-              this.mui.alert(res.body.msg, '提示', '确认')
+              this.mui.alert(res.body.msg, '提示', '确认');
+            const TIME_COUNT = 60;
+            if (!this.timer) {
+              this.count = TIME_COUNT;
+              this.sendMess = false;
+              this.timer = setInterval(() => {
+                if (this.count > 0 && this.count <= TIME_COUNT) {
+                  this.count--;
+                } else {
+                  this.sendMess = true;
+                  clearInterval(this.timer);
+                  this.timer = null;
+                }
+              }, 1000)
+            }
+
           });
       },
 
