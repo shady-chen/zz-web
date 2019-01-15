@@ -47,7 +47,7 @@
           </div>
           <span class="btn login_btn" @click="login">登录</span>
           <p class="forget_btn">
-            <a href="forgetPwd.html" class="forget-a">忘记密码?</a>
+            <a  class="forget-a">忘记密码?</a>
             <a href="/#/register" class="register-a">立即注册</a>
           </p>
         </div>
