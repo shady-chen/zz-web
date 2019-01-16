@@ -8,7 +8,7 @@
     </div>
     <div class="setting_content" style="margin-top: 15px;text-align: left;text-indent: 2em">
 
-      <p>游戏规则设定</p>
+      <p style="letter-spacing: 2px;">{{str}}</p>
 
     </div>
   </div>
@@ -16,7 +16,26 @@
 
 <script>
   export default {
-    name: 'Rules'
+    name: 'Rules',
+    data () {
+      return {
+        str: "",
+
+      }
+    },
+    methods:{
+
+      getInfo(){
+        this.$http.get(this.$store.state.basePath + '/index/index/getSettingData').then(
+          (res) => {
+            // console.log(res.body)
+            this.str = res.body.text_rules;
+          })
+      }
+    },
+    created(){
+      this.getInfo();
+    },
   }
 </script>
 

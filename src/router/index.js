@@ -24,6 +24,7 @@ import MoneysteamOne from '@/components/MoneysteamOne'
 import MyTeam from '@/components/MyTeam'
 import showAllSons from '@/components/showAllSons'
 import Rules from '@/components/Rules'
+import ForgetPwd from '@/components/ForgetPwd'
 
 Vue.use(Router)
 
@@ -148,6 +149,11 @@ export default new Router({
       path: '/Rules',
       name: 'Rules',
       component: Rules
+    },
+    {
+      path: '/ForgetPwd',
+      name: 'ForgetPwd',
+      component: ForgetPwd
     }
   ]
 })

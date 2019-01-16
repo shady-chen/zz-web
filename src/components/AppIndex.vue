@@ -1,46 +1,70 @@
 <template>
 
   <div style="height: 100%;">
+
     <header class="mui-bar mui-bar-nav">
       <h1 class="mui-title">首页</h1>
     </header>
+
+
     <div class="mui-card" style="margin-top: 50px;height: 100%;">
-      <!--页眉，放置标题-->
-      <div style="width: 100%;padding: 10px 2px;height: 57px;text-align: left;">
-        <!--<span class="mui-icon iconfont icon-wode">期数:</span>-->
-        <!--<span class="mui-icon iconfont icon-wode mui-badge mui-badge-danger">{{expect}}</span>-->
 
-        <div style="float:left;width: 60%;padding-left: 10px;color: #000;">
-          <p style="margin-bottom:5px;font-size:0.32rem;color: #000;">
-            <b>当前期数：<b style="color: #c41c00;">{{expect==0?'加载中...':expect}}</b></b>
-          </p>
-          <p style="font-size:0.32rem;color: #000;">
-            <b>下前期数：<b style="color: #c47784;">{{expectAddOne(expect)}}</b></b>
-          </p>
-        </div>
-
-        <div style="float:left;width: 40%;">
-          <span class="my-span">{{timeStr}}</span>
-        </div>
-      </div>
-      <!--内容区-->
       <div class="mui-card-content hongbao" style="">
-        <img src="../assets/4.png" style="width:100%;height: 100%;" @click="rob"/>
-        <div class="expect-2">
 
-          <div class="kuaikuai">剩余数量：{{count}}</div>
+        <div class="my-div">
 
+            <div class="mytop">
+              <img src="../assets/img/icon_reward1.png" alt="" style="width: 50px;position:absolute;left: 20%;top: 15px;">
+              <span class="my-sop">投呗体验金</span>
+            </div>
+
+            <div class="my-time">
+              距离下一个体验金任务还有{{timeStr}}
+            </div>
+
+            <div class="shengyu">任务数量: {{count}}</div>
+
+            <div>
+              <img src="../assets/img/jifen.png" alt="">
+            </div>
+
+           <div class="lingqu" @click="rob()">
+              领取
+           </div>
+
+            <!--最下面的-->
+            <div class="bottom-div">
+
+
+                <div class="left-div">
+                  <p class="my-2-title">
+                    任务期数（天）
+                  </p>
+                  <p class="content-2" >
+                    {{expect==0?'加载中...':expect}}
+                    <!--20180111012-->
+                  </p>
+                </div>
+
+                <div class="left-div">
+                  <p class="my-2-title">
+                    奖励比例（1）
+                  </p>
+                  <p class="content-2">
+                    {{bonus_money}}
+                  </p>
+                </div>
+                <div class="left-div">
+                  <p class="my-2-title">
+                    任务总量（￥）
+                  </p>
+                  <p class="content-2">
+                    {{per_total}}
+                  </p>
+                </div>
+              </div>
         </div>
       </div>
-      <!--页脚，放置补充信息或支持的操作-->
-
-
-      <!--<div class="mui-card-header">-->
-        <!--<span class="mui-icon iconfont icon-wode " style="font-size: 0.4rem;">{{expect}}期数量剩余-->
-            <!--<b class="my-count">{{count}}</b>-->
-        <!--</span>-->
-      <!--</div>-->
-
 
     </div>
 
@@ -77,30 +101,112 @@
   </div>
 </template>
 <style scoped>
-  .expect-2{
-    color: #fff;
-    font-size: 22px;
-    /*margin-top: 15px;*/
-    position: absolute;
-    top: 56px;text-align: center;
-    width: 50%;
-    margin-left: 25%;
-  }
-  .kuaikuai{
-    margin: 0 auto;
-    width: 160px;
-    height: 30px;
-    line-height: 30px;
-    color: #fff;
+  .lingqu{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    margin:50px auto;
+    color:  #fff;
+    line-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: #d84200;
+    font-size: 0.4rem;
     font-weight: 700;
-    font-size: 24px;
-    background: #ff443f;
   }
+  .my-time{
+    color: #f5f5f5;
+    font-size: 0.34rem;
+    font-weight: 700;
+  }
+  .my-sop{
+    height: 80px;
+    line-height: 80px;
+    color: #b63700;
+    font-size: 0.4rem;
+    width: 100%;
+    display: block;
+    text-align: center;
+    float: left;
+    font-weight: 700;
+  }
+  .mytop{
+    position: relative;
+    height: 80px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .my-2-title{
+    margin-top: 20px;
+    color: #c9c9c9;
+    font-size: 0.3rem;
+    font-weight: 700;
+  }
+  .content-2{
+    margin-top: 20px;
+    color: #E5E5E5;
+    font-size: 0.3rem;
+    font-weight: 700;
+  }
+  .bottom-div{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    /*background: #000;*/
+  }
+  .left-div{
+    float: left;
+    width: 33.333333%;
+    box-sizing: border-box;
+    height: 100%;
+  }
+  .shengyu{
+    /*position: absolute;*/
+    /*top: 115px;*/
+    width: 50%;
+    /*left: 35%;*/
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background: #f64301;
+    color: #fff;
+    font-size: 0.4rem;
+    font-weight: 700;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin: 15px auto;
+  }
+  .my-title{
+    color: #fff;
+    /*position: absolute;*/
+    top: 75px;
+    text-align: center;
+    width: 100%;
+    font-weight: 400;
+  }
+  .my-div{
+    width: 100%;
+    height: 100%;
+    /*background: -webkit-linear-gradient(left, #fe8811, #ff6c13); !* Safari 5.1 - 6.0 *!*/
+    /*background: -o-linear-gradient(right, #fe6a00, #ff5001); !* Opera 11.1 - 12.0 *!*/
+    /*background: -moz-linear-gradient(right, #fe6a00, #ff5001); !* Firefox 3.6 - 15 *!*/
+    /*background: linear-gradient(to right, #fea515, #e54c01); !* 标准的语法 *!*/
+    background: url('../assets/img/kuanga.png');
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+
 
   .hongbao {
     position: relative;
     background-size: cover;
-    height: 460px;
+    height: 11rem;
     width: 100%;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -146,6 +252,7 @@
         timeStr: '00:00',
         timeId: 0,
         bonus_money: 0.006,
+        per_total: 1000,
         allowRob: false,//是否可以抢包
         stateStr: '加载中...'
       }
@@ -181,6 +288,7 @@
             this.$set(this, 'expect', res.body.data.expect)
           }
           this.bonus_money = res.body.setting.bunus_money
+          this.per_total = res.body.setting.per_total
           let setting = res.body.setting
 
           let todaytime = new Date(new Date().toLocaleDateString()).getTime()
