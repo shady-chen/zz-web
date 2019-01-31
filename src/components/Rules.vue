@@ -8,7 +8,7 @@
     </div>
     <div class="setting_content" style="margin-top: 15px;text-align: left;text-indent: 2em">
 
-      <p style="letter-spacing: 2px;">{{str}}</p>
+      <p style="letter-spacing: 3px;font-size: 0.4rem;font-weight: 700;color: #000;box-sizing: border-box;padding: 10px;line-height: 27px;'">{{str}}</p>
 
     </div>
   </div>
@@ -31,6 +31,9 @@
             // console.log(res.body)
             this.str = res.body.text_rules;
           })
+      },
+      beStr(str){
+
       }
     },
     created(){

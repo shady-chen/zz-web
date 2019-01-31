@@ -19,7 +19,7 @@
               <span style="font-size: 0.3rem;color: #000;">账号姓名：<b style="color: red;font-size: 0.4rem;">{{item.real_name}}</b></span>
 
             </p>
-            <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
+            <p style="text-align: left!important;margin-bottom: 15px;color: #000;" v-show="item.bank_where">
               <span style="margin-right:10px;font-size: 0.3rem;color: #000;">有开户行：{{item.bank_where}}</span>
             </p>
 
@@ -86,20 +86,7 @@
         let self = this
         self.$router.push({path: `/BankUpdate/${id}`})
 
-      }
-      ,
-      deleteBank (id) {
-        this.$http.post(this.$store.state.basePath + '/user/bank/deleteAppBank',
-          {
-            id: id
-          }).then((res)=>{
-          if (res.body.status == 200)
-          {
-            this.BankData = res.body.data
-          }
-        })
-      }
-      ,
+      },
       addBank () {
         window.location.href = '/#/BankAdd'
 
@@ -112,23 +99,24 @@
       }
       ,
       deleteBank (id) {
-        this.$http.post(this.$store.state.basePath + '/user/bank/deleteAppBank',
-          {
-            id: id
-          },
-        ).then((res) => {
-          if (res.body.status == 0) {
-            this.mui.alert(res.body.msg, '提示', '确认')
-          }
-          if (res.body.status == 200) {
-            this.mui.alert(res.body.msg, '提示', '确认')
-            window.location.reload()
-            if (res.body.status == 200) {
-              this.mui.alert(res.body.msg, '提示', '确认')
-              window.location.reload()
+        let that = this;
+        this.mui.confirm("确定删除吗", '提示', ['是','否'],function (e) {
+
+         if(e.index == 1) return;
+
+
+          that.$http.post(that.$store.state.basePath + '/user/bank/deleteAppBank', {id: id},).then((res) => {
+            if (res.body.status == 0) {
+              that.mui.alert(res.body.msg, '提示', '确认')
             }
-          }
+            if (res.body.status == 200) {
+              that.mui.alert(res.body.msg, '提示', '确认',function(){
+                that.getBankList()
+              })
+            }
+          });
         })
+
       },
 
     }

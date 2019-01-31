@@ -38,7 +38,7 @@
 
           <div class="my-divs">
             <button type="submit"
-                    style="background: #0197ff;color: #fff;margin:0 auto;display: block; width: 50%;height: 1rem;font-size: 0.5rem;"
+                    style="background: #0197ff;color: #fff;margin:0 auto;display: block; width: 50%;height: 0.7rem;font-size: 0.4rem;"
                     class="mt-btn" @click="add">添加
             </button>
           </div>
@@ -119,7 +119,7 @@
   }
 
   .my-input {
-    width: 260px;
+    width: 230px;
     height: 0.7rem;
     margin-top: 3px;
     text-align: left !important;

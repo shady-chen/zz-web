@@ -98,6 +98,9 @@
     </ul>
 
 
+    <audio :src="mp3" autoplay="autoplay"  controls id="mtMp3" style="display: none;">
+      Your browser does not support the audio element.
+    </audio>
   </div>
 </template>
 <style scoped>
@@ -254,7 +257,9 @@
         bonus_money: 0.006,
         per_total: 1000,
         allowRob: false,//是否可以抢包
-        stateStr: '加载中...'
+        stateStr: '加载中...',
+       // mp3:'../assets/5012.mp3',
+        mp3:'',
       }
     },
     methods: {
@@ -266,8 +271,9 @@
           expect: this.expect
         }).then((res) => {
           if (res.body.status == 200) {
-            this.mui.alert('你已成功抢到￥ ' + res.body.money)
-            this.$set(this, 'count', res.body.amount)
+            this.mui.alert('你已领取到￥ ' + res.body.money)
+            this.$set(this, 'count', res.body.amount);
+            this.mp3 = '/static/5012.mp3';
           } else {
             console.log(res.body)
             this.mui.alert(res.body.msg)
@@ -358,11 +364,12 @@
     },
     created () {
       this.isLogin()
-      let that = this
+      let that = this;
+
       this.timeId = setInterval(function () {
         that.getLastPacket()
 
-      }, 2000)
+      }, 1000)
     },
     destroyed () {
       clearInterval(this.timeId)
