@@ -22,9 +22,9 @@
               距离下一个体验金任务还有{{timeStr}}
             </div>
 
-            <div class="shengyu">任务数量: {{count}}</div>
+            <!--<div class="shengyu">任务数量: {{count}}</div>-->
 
-            <div>
+            <div style="margin-top: 25px;">
               <img src="../assets/img/jifen.png" alt="">
             </div>
 
@@ -54,14 +54,14 @@
                     {{bonus_money}}
                   </p>
                 </div>
-                <div class="left-div">
-                  <p class="my-2-title">
-                    任务总量（￥）
-                  </p>
-                  <p class="content-2">
-                    {{per_total}}
-                  </p>
-                </div>
+                <!--<div class="left-div">-->
+                  <!--<p class="my-2-title">-->
+                    <!--任务总量（￥）-->
+                  <!--</p>-->
+                  <!--<p class="content-2">-->
+                    <!--1000000.000-->
+                  <!--</p>-->
+                <!--</div>-->
               </div>
         </div>
       </div>
@@ -162,7 +162,7 @@
   }
   .left-div{
     float: left;
-    width: 33.333333%;
+    width: 50%;
     box-sizing: border-box;
     height: 100%;
   }

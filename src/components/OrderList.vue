@@ -4,7 +4,7 @@
     <section class="container" style="background: #fff;">
       <header class="header investment_title" style="display: block;">
 
-        <span>通知列表</span>
+        <span>订单列表</span>
 
       </header>
       <section class="tabs">
@@ -90,14 +90,14 @@
     },
     methods: {
       getOrderList () {
-        this.$http.post(this.$store.state.basePath + '/user/date/getOrder',
+        this.$http.get(this.$store.state.basePath + '/user/date/getOrderToday',
           {
             state: 0,
             status: 1
           },
         ).then(
           (res) => {
-            console.log(res)
+
             if (res.body.status == 0) {
               console.log(res)
               this.mui.alert(res.body.msg, '提示', '确认')

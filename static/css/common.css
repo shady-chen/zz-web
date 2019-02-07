@@ -60,6 +60,8 @@ html {
 }
 
 body {
+  width: 100%;
+  overflow-y: hidden;
     height: 100%;
     margin: 0;
     font-size: 0.2rem;
@@ -150,4 +152,15 @@ body {
     font-size: 0.24rem;
     color: #888;
     margin-top: 0.08rem;
+}
+
+.my-p-rules{
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 0.55rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 2px 6px;
+  font-size: 0.3rem;
 }
