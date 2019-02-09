@@ -86,7 +86,7 @@
               </a>
             </li>
             <li class="item" id="addBank">
-              <a href="javascript:;" >
+              <a href="http://kefu.ziyun.com.cn/vclient/chat/?websiteid=143949&wc=7331c7" >
                 <div>
 								<span class="icon_wrap">
 									<i class="icon icon_card"></i>

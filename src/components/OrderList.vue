@@ -18,18 +18,20 @@
       </section>
       <section class="tabs_wrap" id="tabs_wrap">
 
-          <ul class="tabs_list">
+          <ul class="tabs_list" >
             <li class="list_item" v-for="item in orderData" style="width: 96%;margin: 10px auto;border: 1px solid #d7d7d7;padding: 0.2rem;
 -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;text-align: left!important;font-size: 0.3rem;
  background: #f6f6f6;">
-              <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
-                <span style="font-size: 0.3rem;color: #000;">总金额：<b
-                  style="color: red;font-size: 0.4rem;">{{item.money}}</b></span>
-                <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">{{item.create_time}}</span>
-              </p>
+
               <p style="text-align: left!important;margin-bottom: 15px;">
 
                 <span style="font-size: 0.3rem;color: #000;">订单号：{{item.id}}</span>
+                <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">{{item.create_time}}</span>
+              </p>
+              <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
+                <span style="font-size: 0.3rem;color: #000;">总金额：<b
+                  style="color: red;font-size: 0.4rem;">{{item.money}}</b></span>
+
                 <span
                   style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">期数：{{item.packet_expect}}</span>
               </p>
@@ -38,7 +40,7 @@
                <b style="color: green;">{{byStatusReturnStr(item.status)}}</b>
               </span>
                 <button style="float: right;margin-right:10px;background: #0197ff;" v-show="item.status==1 "
-                        class="mt-btn" @click="getOneOrder(item.id)">付款
+                        class="mt-btn" @click="getOneOrder(item.id)">完成订单
                 </button>
               </p>
 
@@ -90,7 +92,7 @@
     },
     methods: {
       getOrderList () {
-        this.$http.get(this.$store.state.basePath + '/user/date/getOrderToday',
+        this.$http.get(this.$store.state.basePath + '/user/date/getOrder2Hour',
           {
             state: 0,
             status: 1
@@ -122,7 +124,7 @@
             str = '已过期'
             break
           case 1:
-            str = '未付款'
+            str = '等待付款'
             break
           case 2:
             str = '审核中'

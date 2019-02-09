@@ -45,12 +45,37 @@
         </li>
       </ul>
 
+      <div id="special_details">特别说明：
+        <p>
+          银行卡添加功能是可以添加支付宝的，账户姓名为支付宝账号姓名，数字账号为支付宝账号，账户类型为支付宝，开户行可为空不写;添加银行卡请按照正常填写即可。
+        </p>
+      </div>
+
     </div>
 
 
   </div>
 </template>
-
+<style>
+  #special_details{
+    margin-top: 15px;
+    text-align: left!important;
+    font-size: 0.3rem;
+    font-weight: 700;
+    line-height: 0.4rem;
+    box-sizing: border-box;
+    padding: 2px 10px;
+    color: #c80000;
+  }
+  #special_details>p{
+    font-size: 0.3rem;
+    font-weight: 700;
+    line-height: 0.4rem;
+    text-indent: 4em;
+    text-align: left!important;
+    color: #293589;
+  }
+</style>
 <script>
   export default {
     name: 'BankAdd',
@@ -124,7 +149,7 @@
     margin-top: 3px;
     text-align: left !important;
     text-indent: 5px;
-    font-size: 0.3rem;
+    font-size: 0.25rem;
     border: 1px solid #afafaf;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
