@@ -26,7 +26,7 @@
             </span>
 
           </p>
-          <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
+          <p style="text-align: left!important;margin-bottom: 15px;color: #000;" >
             <span style="font-size: 0.3rem;color: #000;">提现户行：
               <b style="color: red;font-size: 0.4rem;">
               {{bankData2.bank_where}}
@@ -51,6 +51,19 @@
         <li class="list_item"  style="width: 96%;margin: 0 auto;border: 1px solid #d7d7d7;padding: 0.2rem;
  -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;text-align: left!important;font-size: 0.3rem;
  background: #f6f6f6" >
+
+          <div style="text-align: left!important;margin-bottom: 25px;color: #000;overflow:hidden;">
+            <span style="font-size: 0.3rem;color: #000;float:left;height: 0.5rem;line-height: 0.5rem;">账户余额： </span>
+            <input type="text"
+                   name="remark"
+                   style="background: none;float:left;width:3.48rem;height:  0.5rem;border: 1px solid #d0d7c6;font-size: 0.3rem;"
+                   v-model="userInfo.money"
+                   readonly
+                   disabled
+                   placeholder="请输入您的提现金额"
+            />
+          </div>
+
           <div style="text-align: left!important;margin-bottom: 25px;color: #000;overflow:hidden;">
               <span style="font-size: 0.3rem;color: #000;float:left;height: 0.5rem;line-height: 0.5rem;">提现金额： </span>
               <input type="text"
@@ -61,29 +74,29 @@
               />
           </div>
 
-          <div style="text-align: left!important;margin-bottom: 25px;color: #000;overflow:hidden;">
-            <span style="font-size: 0.3rem;color: #000;float:left;height: 0.5rem;line-height: 0.5rem;">提现号码： </span>
-            <input type="text"
-                   name="remark"
-                   style="float:left;width:3.48rem;height:  0.5rem;border: 1px solid #d0d7c6;font-size: 0.3rem;border: none;"
-                   v-model="userInfo.phone"
-                   placeholder="请输入您的提现金额"
-                   disabled
-            />
-          </div>
-          <div style="text-align: left!important;margin-bottom: 25px;color: #000;overflow:hidden;">
-            <span style="font-size: 0.3rem;color: #000;float:left;height: 0.5rem;line-height: 0.5rem;">手机验证： </span>
-            <input type="text"
-                   name="remark"
-                   style="float:left;width:3.48rem;height:  0.5rem;border: 1px solid #d0d7c6;font-size: 0.2rem;"
-                   v-model="phoneMess"
-                   placeholder="请输入短信验证码"
-            />
-            <button type="submit" style="background: #0197ff;color: #fff;float:left;margin-left: 5px;height: 0.5rem;" class="mt-btn"
-                    @click="getPhoneMess" v-show="show">获取</button>
-            <button type="submit" style="background: #ccc;color: #fff;float:left;margin-left: 5px;height: 0.5rem;" class="mt-btn"
-                    v-show="!show">{{count}}秒</button>
-          </div>
+          <!--<div style="text-align: left!important;margin-bottom: 25px;color: #000;overflow:hidden;">-->
+            <!--<span style="font-size: 0.3rem;color: #000;float:left;height: 0.5rem;line-height: 0.5rem;">提现号码： </span>-->
+            <!--<input type="text"-->
+                   <!--name="remark"-->
+                   <!--style="float:left;width:3.48rem;height:  0.5rem;border: 1px solid #d0d7c6;font-size: 0.3rem;border: none;"-->
+                   <!--v-model="userInfo.phone"-->
+                   <!--placeholder="请输入您的提现金额"-->
+                   <!--disabled-->
+            <!--/>-->
+          <!--</div>-->
+          <!--<div style="text-align: left!important;margin-bottom: 25px;color: #000;overflow:hidden;">-->
+            <!--<span style="font-size: 0.3rem;color: #000;float:left;height: 0.5rem;line-height: 0.5rem;">手机验证： </span>-->
+            <!--<input type="text"-->
+                   <!--name="remark"-->
+                   <!--style="float:left;width:3.48rem;height:  0.5rem;border: 1px solid #d0d7c6;font-size: 0.2rem;"-->
+                   <!--v-model="phoneMess"-->
+                   <!--placeholder="请输入短信验证码"-->
+            <!--/>-->
+            <!--<button type="submit" style="background: #0197ff;color: #fff;float:left;margin-left: 5px;height: 0.5rem;" class="mt-btn"-->
+                    <!--@click="getPhoneMess" v-show="show">获取</button>-->
+            <!--<button type="submit" style="background: #ccc;color: #fff;float:left;margin-left: 5px;height: 0.5rem;" class="mt-btn"-->
+                    <!--v-show="!show">{{count}}秒</button>-->
+          <!--</div>-->
 
           <div style="text-align: left!important;margin-bottom: 25px;color: #000;overflow:hidden;">
             <span style="font-size: 0.3rem;color: #000;float:left;height: 0.5rem;line-height: 0.5rem;">提现备注： </span>
@@ -123,6 +136,7 @@ height: 1rem;" class="mt-btn" @click="add">提现</button>
         remark:'',
         show:true,
         count:'',
+        balance:0.000,
       }
     },
     methods:{
@@ -189,15 +203,10 @@ height: 1rem;" class="mt-btn" @click="add">提现</button>
           this.mui.alert("请输入提现金额", '提示', '确认');
           return
         }
-        if(!this.phoneMess){
-          // this.mui.alert("请输入短信验证码", '提示', '确认');
-          // return
-        }
-
         this.$http.post(this.$store.state.basePath + '/user/withdraw/withdraw', {
             bank_id:this.selected,
             money:this.money,
-            phoneMess:this.phoneMess,
+            //phoneMess:this.phoneMess,
             remarks:this.remark
         }).then((res) => {
             console.log(res)
@@ -209,13 +218,15 @@ height: 1rem;" class="mt-btn" @click="add">提现</button>
               this.mui.alert(res.body.msg, '提示', '确认')
             }
             if(res.body.status == 200){
-              window.location.href = '/#/WithdrawList';
-
+              //window.location.href = '/#/WithdrawList';
+              this.mui.alert('提现成功', '提示', '确认',function () {
+                 window.location.href = '/#/WithdrawList';
+              })
             }
           })
       },
       getUserInfo(){
-        this.$http.post(this.$store.state.basePath + '/user/user/getSessionUser',
+        this.$http.post(this.$store.state.basePath + '/user/user/getUser',
           {},
         ).then(
           (res) => {
@@ -249,8 +260,9 @@ height: 1rem;" class="mt-btn" @click="add">提现</button>
       }
     },
     created(){
-        this.getBankList();
         this.getUserInfo();
+        this.getBankList();
+
         // this.bankData2 = this.bankData[0];
     }
 
