@@ -19,39 +19,137 @@
       </section>
       <section class="tabs_wrap" id="tabs_wrap">
         <ul class="tabs_list">
-          <li class="list_item" v-for="item in orderData" style="width: 96%;margin:15px auto;border: 1px solid #d7d7d7;padding: 0.2rem;
--webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;text-align: left!important;font-size: 0.3rem;
- background: #f6f6f6">
-            <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
-              <span style="font-size: 0.3rem;color: #000;">总金额：<b style="color: red;font-size: 0.4rem;">{{item.money}}</b></span>
-              <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">{{item.create_time}}</span>
-            </p>
-            <p style="text-align: left!important;margin-bottom: 15px;">
+          <li class="list_item " id="liste" v-for="item in orderData" style="
+    width: 90%!important;
+    margin: 10px auto!important;
+    border: 1px solid #d7d7d7!important;
+    padding: 0.2rem!important;
+    -webkit-border-radius: 5px!important;
+    -moz-border-radius: 5px!important;
+    border-radius: 5px!important;
+    text-align: left !important;
+    font-size: 0.3rem!important;
+    position: relative;
+    background: #015fa3!important;"
+              @click="getOneOrder(item.id)"
+          >
+            <p style="text-align: left!important;" class="my-p2"> 订单时间: {{item.create_time}}</p>
+            <p style="text-align: left!important;" class="my-p2"> 订单金额: {{item.money}}</p>
+            <p style="text-align: left!important;" class="my-p2"> 任务期数：{{item.packet_expect}}</p>
+            <p style="text-align: left!important;" class="my-p2"> 订单序号：{{item.id}}</p>
 
-              <span style="font-size: 0.3rem;color: #000;">订单号：{{item.id}}</span>
-              <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">期数：{{item.packet_expect}}</span>
-            </p>
-            <p style="text-align: left!important;margin-bottom: 5px;overflow: hidden">
-              <span style="font-size: 0.3rem;color: #000;margin-top: 8px;display: block;float:left;">现状态：
-               <b style="color: green;">{{byStatusReturnStr(item.status)}}</b>
-              </span>
-              <!--<button style="float: right;margin-right:10px;background: #0197ff;" class="mt-btn">付款</button>-->
-            </p>
+
+            <img src="../assets/pass2.png" width='100px' alt="" class="rjgm-status">
+
 
 
           </li>
+
         </ul>
       </section>
+
+      <div style="position:fixed;bottom: 0.95rem;
+                  left: 0;
+                  width: 100%;
+                  /*background:#000;*/
+                  height: 0.8rem;
+                  font-size: 0.3rem;
+                  font-weight: 700;
+                  line-height: 0.8rem;
+                  padding: 0 20px;">
+        累计条数：{{count}}
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        累计金额：<b style="color: red;">￥{{total_money}}</b>
+        <span></span>
+      </div>
+
     </section>
   </div>
 </template>
+<style>
+  .show-details-rj
+  {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+  }
+  .rjgm-status{
+    position: absolute;
+    right: 10px;
+    bottom: 12px;
+    color: #0c9fff;
+    font-weight: 900;
+    font-size: 0.3rem;
+  }
+  .my-p2{
+    height: 0.4rem;
+    line-height: 0.4rem;
+    color: #ddd;
+    font-size: 0.28rem;
+    margin-top: 10px!important;
+  }
+  .delete-b{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #c80000;
+  }
+  .right-b{
+    float: left;
+    text-align: left!important;
+  }
+  .which-b{
+    font-size: 0.32rem;
+    color: #fff;
+    text-indent: 1em;
+    font-weight: 900;
+    line-height: 0.5rem;
+    height: 0.5rem;
+    text-align: left!important;
+  }
+  .tabs_list>li{
+    overflow: hidden;
+    position: relative;
+  }
+  .bak-logo{
+    float: left;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  #mybtn-b {
+    margin-bottom: 10px;
+    margin-top: 58px;
+    z-index: 100;
+    width: 100%;
+    height: 0.8rem;
+    text-align: left!important;
+    font-size: 0.3rem;
+    line-height: 0.8rem;
+    background: #fff!important;
+    text-indent: 2em;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 
+  }
+</style>
 <script>
   export default {
     name: 'OrderList3',
     data(){
       return{
-        orderData:{}
+        orderData:{},
+        count:0,
+        total_money:0,
       }
     },
     methods:{
@@ -70,16 +168,17 @@
             }
             if(res.body.status == 200){
               this.orderData = res.body.data;
+              this.count = this.orderData.length;
+              for(let i = 0; i<this.count;i++){
+                this.total_money += Number(this.orderData[i].money);
+              }
             }
           })
       },
 
       getOneOrder(id){
         let self = this;
-        console.log(id+'0000000000000000000000000000')
         self.$router.push({path:`/OrderOne/${id}`});
-        // window.location.href = '/#/OrderOne';
-
       },
       byStatusReturnStr(status){
         let str = '未知'

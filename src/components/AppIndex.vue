@@ -13,6 +13,15 @@
 
         <div class="my-div">
 
+          <div class="size-notice">
+            <div class="notice-img">公告：</div>
+            <marquee class="my-notice" scrollamount="3"  >
+               <span v-for="(item,index) in NoticeData" :key="index" @click="getOneNotice(item.id)" class="my-span-notice">
+                 【{{index+1}}】{{item.content}}
+               </span>
+            </marquee>
+          </div>
+
             <div class="mytop">
               <img src="../assets/img/icon_reward1.png" alt="" style="width: 50px;position:absolute;left: 20%;top: 15px;">
               <span class="my-sop">投呗体验金</span>
@@ -32,10 +41,10 @@
               领取
            </div>
 
+
+
             <!--最下面的-->
             <div class="bottom-div">
-
-
                 <div class="left-div">
                   <p class="my-2-title">
                     任务期数（天）
@@ -104,6 +113,26 @@
   </div>
 </template>
 <style scoped>
+  .my-span-notice{
+    margin-right: 20px;
+  }
+  .size-notice{
+    margin-top: 15px;
+  }
+  .my-notice{
+    width: 80%;
+    float: left;
+    color: #fff;
+    font-weight: 700;
+  }
+  .notice-img{
+    width: 20%;
+    float: left;
+    overflow: hidden;
+    font-weight: 700;
+    color: #fff;
+    text-indent: 2em;
+  }
   .lingqu{
     width: 100px;
     height: 100px;
@@ -203,6 +232,7 @@
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    overflow: hidden;
   }
 
 
@@ -260,6 +290,7 @@
         stateStr: '加载中...',
        // mp3:'../assets/5012.mp3',
         mp3:'',
+        NoticeData:null,
       }
     },
     methods: {
@@ -360,7 +391,21 @@
             }
           }
         })
-      }
+      },
+
+      /**
+       * 获取网站公告
+       */
+      getNoticeList () {
+        this.$http.post(this.$store.state.basePath + '/user/notice/getNoticeByUid',
+          {},
+        ).then(
+          (res) => {
+            if (res.body.status == 200) {
+              this.NoticeData = res.body.data;
+            }
+          })
+      },
     },
     created () {
       this.isLogin()
@@ -368,8 +413,9 @@
 
       this.timeId = setInterval(function () {
         that.getLastPacket()
-
-      }, 1000)
+      }, 1000);
+      //获取网站公告
+      this.getNoticeList();
     },
     destroyed () {
       clearInterval(this.timeId)

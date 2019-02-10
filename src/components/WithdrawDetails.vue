@@ -7,47 +7,62 @@
       <span>提现详情</span>
     </div>
     <div>
-      <p style="font-size: 0.3rem;color: #000;margin-bottom: 15px;margin-top: 15px;">提现信息：</p>
+      <p style="font-size: 0.3rem;color: #000;margin-bottom: 15px;margin-top: 15px;">提现信息</p>
       <ul class="tabs_list">
-        <li class="list_item"  style="width: 96%;margin: 0 auto;border: 1px solid #d7d7d7;padding: 0.2rem;
--webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;text-align: left!important;font-size: 0.3rem;
- background: #f6f6f6" >
-          <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
-            <span style="font-size: 0.3rem;color: #000;">总金额：<b style="color: red;font-size: 0.4rem;">{{withdrawData.money}}</b></span>
-            <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">{{withdrawData.create_time}}</span>
-          </p>
-          <p style="text-align: left!important;margin-bottom: 15px;">
+        <li class="list_item " id="liste"  style="
+    width: 90%!important;
+    margin: 10px auto!important;
+    border: 1px solid #d7d7d7!important;
+    padding: 0.2rem!important;
+    -webkit-border-radius: 5px!important;
+    -moz-border-radius: 5px!important;
+    border-radius: 5px!important;
+    text-align: left !important;
+    font-size: 0.3rem!important;
+    position: relative;
+    background: #008481!important;">
+          <p style="text-align: left!important;" class="my-p2"> 提现时间:{{withdrawData.create_time}}</p>
+          <p style="text-align: left!important;" class="my-p2"> 提现金额:{{withdrawData.money}}</p>
+          <p style="text-align: left!important;" class="my-p2"> 提现单号：{{withdrawData.id}}</p>
+          <p style="text-align: left!important;" class="my-p2"> 提现备注：{{withdrawData.remarks}}</p>
 
-            <span style="font-size: 0.3rem;color: #000;">订单号：{{withdrawData.id}}</span>
-            <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">状态：<b style="color: green;">{{byStatusReturnStr(withdrawData.states)}}</b></span>
-          </p>
-          <p style="text-align: left!important;margin-bottom: 5px;overflow: hidden">
-              <span style="font-size: 0.3rem;color: #000;margin-top: 8px;display: block;float:left;">备注：
-               {{withdrawData.remarks}}
-              </span>
-          </p>
+          <img src="../assets/pass2.png" v-if="byStatusReturnStr(withdrawData.states) == '已通过'"
+               width='100px' alt="" class="rjgm-status">
+          <img src="../assets/unpass.png" v-if="byStatusReturnStr(withdrawData.states) == '已驳回'"
+               width='100px' alt="" class="rjgm-status">
         </li>
+
       </ul>
-      <p style="font-size: 0.3rem;color: #000;margin-bottom: 15px;margin-top: 15px;">我的银行卡：</p>
+
+
+      <p style="font-size: 0.3rem;color: #000;margin-bottom: 15px;margin-top: 15px;">我的银行卡</p>
+
+
       <ul class="tabs_list">
-        <li class="list_item"  style="width: 96%;margin: 0 auto;border: 1px solid #d7d7d7;padding: 0.2rem;
--webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;text-align: left!important;font-size: 0.3rem;
- background: #f6f6f6" >
-          <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
-            <span style="font-size: 0.3rem;color: #000;">姓名：<b style="color: red;font-size: 0.4rem;">{{withdrawData.real_name}}</b></span>
-            <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">开户行：{{withdrawData.bank_where}}</span>
-          </p>
-          <p style="text-align: left!important;margin-bottom: 15px;">
+        <li class="item_list2"     style="
+    width: 90%!important;
+    margin: 10px auto!important;
+    border: 1px solid #d7d7d7!important;
+    padding: 0.2rem!important;
+    -webkit-border-radius: 5px!important;
+    -moz-border-radius: 5px!important;
+    border-radius: 5px!important;
+    text-align: left !important;
+    font-size: 0.3rem!important;
+    position: relative;
+    background: #00477b!important;">
 
-            <span style="font-size: 0.3rem;color: #000;">银行卡类型：{{withdrawData.bank_which}}</span>
-            <!--<span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">期数：{{orderData.packet_expect}}</span>-->
-          </p>
-          <p style="text-align: left!important;margin-bottom: 5px;overflow: hidden">
-              <span style="font-size: 0.3rem;color: #000;margin-top: 8px;display: block;float:left;">银行卡账号：
-               <b style="color: green;">{{withdrawData.bank_num}}</b>
-              </span>
-          </p>
+          <img v-if="withdrawData.bank_which!='支付宝'" src="../assets/bank.jpg" alt="" width="100px" class="bak-logo">
+          <img v-if="withdrawData.bank_which=='支付宝'" src="../assets/alipay.jpg" alt="" width="100px" class="bak-logo">
 
+          <div class="right-b">
+            <p class="which-b"
+               style="text-align: left!important;">{{withdrawData.bank_which}}&nbsp;{{withdrawData.bank_where?('('+withdrawData.real_name+')'):''}}</p>
+            <p class="which-b"
+               style="text-align: left!important;">{{withdrawData.bank_where?withdrawData.bank_where:withdrawData.real_name}}</p>
+            <p class="which-b"
+               style="text-align: left!important;">{{withdrawData.bank_num}}</p>
+          </div>
 
         </li>
       </ul>
@@ -89,24 +104,25 @@
             }
           })
       },
-      byStatusReturnStr(status){
+
+      byStatusReturnStr (status) {
         let str = '未知'
         switch (status) {
           case 1:
             str = '审核中'
-            break;
+            break
           case 2:
-            str = '审核通过'
-            break;
+            str = '已通过'
+            break
           case 3:
-            str = '审核未通过'
-            break;
+            str = '已驳回'
+            break
           default:
             str = '未知状态'
-            break;
+            break
         }
-        return str;
-      },
+        return str
+      }
     },
     created(){
       this.getOne();

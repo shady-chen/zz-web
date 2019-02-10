@@ -7,70 +7,98 @@
       <span>订单详情</span>
     </div>
     <div>
+
+
       <p style="font-size: 0.3rem;color: #000;margin-bottom: 15px;margin-top: 15px;">订单信息</p>
+
+
+
       <ul class="tabs_list">
-        <li class="list_item" style="width: 96%;margin: 0 auto;border: 1px solid #d7d7d7;padding: 0.2rem;
--webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;text-align: left!important;font-size: 0.3rem;
- background: rgb(230, 230, 230)">
-          <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
-            <span style="font-size: 0.3rem;color: #000;">总金额：<b style="color: red;font-size: 0.4rem;">{{orderData.money}}</b></span>
-            <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">{{orderData.create_time}}</span>
-          </p>
-          <p style="text-align: left!important;margin-bottom: 15px;">
-            <span style="font-size: 0.3rem;color: #000;">订单号：{{orderData.id}}</span>
-            <span
-              style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">期数：{{orderData.packet_expect}}</span>
-          </p>
-          <p style="text-align: left!important;margin-bottom: 5px;overflow: hidden">
-              <span style="font-size: 0.3rem;color: #000;margin-top: 8px;display: block;float:left;">现状态：<b
-                style="color: green;">{{byStatusReturnStr(orderData.status)}}</b>
-              </span>
-          </p>
+        <li class="list_item " id="liste"  style="
+    width: 90%!important;
+    margin: 10px auto!important;
+    border: 1px solid #d7d7d7!important;
+    padding: 0.2rem!important;
+    -webkit-border-radius: 5px!important;
+    -moz-border-radius: 5px!important;
+    border-radius: 5px!important;
+    text-align: left !important;
+    font-size: 0.3rem!important;
+    position: relative;
+    background: #015fa3!important;"
+        >
+          <p style="text-align: left!important;" class="my-p2"> 订单时间: {{orderData.create_time}}</p>
+          <p style="text-align: left!important;" class="my-p2"> 订单金额: {{orderData.money}}</p>
+          <p style="text-align: left!important;" class="my-p2"> 任务期数：{{orderData.packet_expect}}</p>
+          <p style="text-align: left!important;" class="my-p2"> 订单序号：{{orderData.id}}</p>
+
+          <img src="../assets/unfinish.png" width='100px' alt="" class="rjgm-status">
 
         </li>
+
       </ul>
+
       <p style="font-size: 0.3rem;color: #000;margin-bottom: 15px;margin-top: 15px;">系统银行卡</p>
+
+
       <ul class="tabs_list">
-        <li class="list_item" style="width: 96%;margin: 0 auto;border: 1px solid #d7d7d7;padding: 0.2rem;
--webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;text-align: left!important;font-size: 0.3rem;
- background: rgb(230, 230, 230)">
-          <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
-            <span style="font-size: 0.3rem;color: #000;">户主姓名：<b style="color: red;font-size: 0.4rem;">{{orderData.sys_name}}</b></span>
+        <li class="list_item"
+            style="
+    width: 90%!important;
+    margin: 10px auto!important;
+    border: 1px solid #d7d7d7!important;
+    padding: 0.2rem!important;
+    -webkit-border-radius: 5px!important;
+    -moz-border-radius: 5px!important;
+    border-radius: 5px!important;
+    text-align: left !important;
+    font-size: 0.3rem!important;
+    position: relative;
+    background: #00477b!important;">
 
-          </p>
+          <img v-if="orderData.bank_which!='支付宝'" src="../assets/bank.jpg" alt="" width="100px" class="bak-logo">
+          <img v-if="orderData.bank_which=='支付宝'" src="../assets/alipay.jpg" alt="" width="100px" class="bak-logo">
 
-          <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
-            <span style="margin-right:10px;font-size: 0.3rem;color: #000;">开户银行：{{orderData.sys_bank_where}}</span>
-          </p>
-          <p style="text-align: left!important;margin-bottom: 15px;">
+          <div class="right-b">
+            <p class="which-b"
+               style="text-align: left!important;">{{orderData.sys_bank_which}}&nbsp;{{orderData.sys_bank_where?('('+orderData.sys_name+')'):''}}</p>
+            <p class="which-b"
+               style="text-align: left!important;">{{orderData.sys_bank_where?orderData.sys_bank_where:orderData.sys_name}}</p>
+            <p class="which-b"
+               style="text-align: left!important;">{{orderData.sys_bank_num}}</p>
+          </div>
 
-            <span style="font-size: 0.3rem;color: #000;">银行类型：{{orderData.sys_bank_which}}</span>
-            <!--<span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">期数：{{orderData.packet_expect}}</span>-->
-          </p>
-          <p style="text-align: left!important;margin-bottom: 5px;overflow: hidden">
-              <span style="font-size: 0.3rem;color: #000;margin-top: 8px;display: block;float:left;">银行账号：<b
-                style="color: green;">{{orderData.sys_bank_num}}</b>
-             </span>
-          </p>
 
         </li>
       </ul>
 
-      <p style="text-align: left!important;margin-bottom: 5px;margin-left: 10px;margin-top: 15px;overflow: hidden">
-        <span style="font-size: 0.3rem;color: #000;margin-top: 8px;display: block;float:left;">备注：</span>
+      <div style="text-align: left!important;width: 90%;;overflow: hidden;margin:0 auto;">
+        <span style="
+        font-size: 0.3rem;
+        display: block;
+        width: 15%;
+        text-align: center;
+        background:#ddd;
+        height: 40px;
+        line-height: 40px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        color: #6d6d6d;
+        font-weight: 700;
+        float:left;">备注</span>
 
-        <textarea name="remark" placeholder="请输入你此订单的备注信息" v-model="remark" id="" cols="20" rows="10"
-                  style="width: 80%;height: 40px;"></textarea>
-      </p>
+        <textarea name="remark" placeholder="如有需要，请输入订单的备注信息" v-model="remark" id="" cols="20" rows="10"
+                  style="width: 85%;height: 40px;font-size: 0.3rem;"></textarea>
+      </div>
       <form @submit.prevent="upload" method="post" enctype="multipart/form-data"
-            style="font-size: 0.3rem;color: #000;margin-bottom: 15px;margin-top: 15px;">
-        <div class="img-wrap" :class="{ord:flag}" style="">
+            style="font-size: 0.3rem;color: #000;margin-bottom: 15px;margin-top: -15px;">
+        <div class="img-wrap" v-show="!flag" :class="{ord:flag}" style="">
           {{str}}
         </div>
-        <input type="file" name="img_file" v-on:change="onChange($event)"
+        <input type="file" name="img_file" id="file" v-on:change="onChange($event)"
                style="position:relative;z-index: 22;top: -41px;opacity: 0">
         <input type="hidden" name="order_id" value="orderData.id">
-
+        <img src="" id="img" alt="" width="200px" height="100px">
         <button v-show="flag" type="submit" style="background: #0197ff;color: #fff; display: block;margin:15px auto;" class="mt-btn">
           上传凭证
         </button>
@@ -95,6 +123,83 @@
     border-radius: 5px;
     z-index: 1;
   }
+  .show-details-rj
+  {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+  }
+  .rjgm-status{
+    position: absolute;
+    right: 10px;
+    bottom: 12px;
+    color: #0c9fff;
+    font-weight: 900;
+    font-size: 0.3rem;
+  }
+  .my-p2{
+    height: 0.4rem;
+    line-height: 0.4rem;
+    color: #ddd;
+    font-size: 0.28rem;
+    margin-top: 10px!important;
+  }
+  .delete-b{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #c80000;
+  }
+  .right-b{
+    float: left;
+    text-align: left!important;
+  }
+  .which-b{
+    font-size: 0.32rem;
+    color: #fff;
+    text-indent: 1em;
+    font-weight: 900;
+    line-height: 0.5rem;
+    height: 0.5rem;
+    text-align: left!important;
+  }
+  .tabs_list>li{
+    overflow: hidden;
+    position: relative;
+  }
+  .bak-logo{
+    float: left;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  #mybtn-b {
+    margin-bottom: 10px;
+    margin-top: 58px;
+    z-index: 100;
+    width: 100%;
+    height: 0.8rem;
+    text-align: left!important;
+    font-size: 0.3rem;
+    line-height: 0.8rem;
+    background: #fff!important;
+    text-indent: 2em;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+  }
+</style>
+<style>
+
   .ord{
     background: #ff2d27;
     border: 1px solid #ff2d27;
@@ -111,21 +216,20 @@
         remark: '',
         str: '请上传您的转账凭证',
         flag: false,
+        src:'',
       }
     },
     methods: {
       getOne () {
         let self = this
-        // console.log(self.$route.params.id)
         this.$http.post(this.$store.state.basePath + '/user/date/oneOrder',
           {
             order_id: self.$route.params.id
           },
         ).then(
           (res) => {
-            console.log(res)
+
             if (res.body.status == 0) {
-              console.log(res)
               this.mui.alert(res.body.msg, '提示', '确认')
             }
             if (res.body.status == 200) {
@@ -159,9 +263,23 @@
       },
       onChange: function (event) {
         this.picture = event.target.files[0] // get input file object
-        console.log(this.picture)
+        console.log(this.picture);
+        //this.src = this.picture.name;
         this.str = '你已上传，请提交审核'
-        this.flag = true
+        this.flag = true;
+
+        let flObj=document.getElementById("file")
+        let file=flObj.files[0];                 //因为每次只上传了一张图片，所以获取到flObj.files[0];    
+
+        let fReader=new FileReader();
+
+        fReader.readAsDataURL(file)
+
+        fReader.onload=function(e)
+        {
+          document.getElementById("img").src= this.result
+        }
+
       },
       upload: function () {
         var that = this
@@ -170,16 +288,9 @@
         formData.append('order_id', this.orderData.id)
         formData.append('remark', this.remark)
 
-        // specify Content-Type, with formData as well
         this.$http.post(this.$store.state.basePath + '/user/date/changeOrderState', formData, {
           headers: {'Content-Type': 'multipart/form-data'}
         }).then(function (res) {
-          // res.json().then(function (result) {
-          //   that.result = result.info;
-          //   console.log(that.result);
-          // });
-          // }, function (res) {
-          //   console.log(res.body);
           if (res.body.status == 0) {
             console.log(res)
             this.mui.alert(res.body.msg, '提示', '确认')

@@ -9,10 +9,15 @@
         <span>提现记录</span>
       </header>
 
-      <button style="background: #0197ff;margin-top: 60px!important;" class="mt-btn" @click="addWithdraw()">提现</button>
+      <div id="mybtn-b" @click="addWithdraw()">
+        <b>+</b> &nbsp;&nbsp;
+        <span>提现</span>
+        <span style="float:right;margin-right: 30px;font-size: 0.4rem;"> ➜ </span>
+      </div>
       <section class="tabs_wrap" id="tabs_wrap" style="height: auto;margin-bottom: 69px;top:1.88rem;">
         <ul class="tabs_list">
-          <li class="list_item " id="liste" v-for="item in WithdrawData" style="width: 90%!important;
+          <li class="list_item " id="liste" v-for="item in WithdrawData" style="
+    width: 90%!important;
     margin: 10px auto!important;
     border: 1px solid #d7d7d7!important;
     padding: 0.2rem!important;
@@ -21,25 +26,24 @@
     border-radius: 5px!important;
     text-align: left !important;
     font-size: 0.3rem!important;
-    background: #f6f6f6!important;">
-            <p style="text-align: left!important;margin-bottom: 15px;color: #000;">
-              <span style="font-size: 0.3rem;color: #000;">总金额：<b
-                style="color: red;font-size: 0.4rem;">{{item.money}}</b></span>
-              <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">{{item.create_time}}</span>
-            </p>
-            <p style="text-align: left!important;margin-bottom: 15px;">
+    position: relative;
+    background: #008481!important;">
+            <p style="text-align: left!important;" class="my-p2"> 提现时间:{{item.create_time}}</p>
+            <p style="text-align: left!important;" class="my-p2"> 提现金额:{{item.money}}</p>
+            <p style="text-align: left!important;" class="my-p2"> 提现单号：{{item.id}}</p>
 
-              <span style="font-size: 0.3rem;color: #000;">订单号：{{item.id}}</span>
-              <span style="float: right;margin-right:10px;font-size: 0.3rem;color: #000;">状态：<b style="color: green;">{{byStatusReturnStr(item.states)}}</b></span>
-            </p>
-            <p style="text-align: left!important;margin-bottom: 5px;overflow: hidden">
-              <button style="float: right;margin-right:10px;background: #0197ff;" class="mt-btn"
-                      @click="getOneWithdraw(item.id)">提现详情
-              </button>
-            </p>
 
+            <img src="../assets/pass2.png" v-if="byStatusReturnStr(item.states) == '已通过'"
+                 width='100px' alt="" class="rjgm-status">
+            <img src="../assets/unpass.png" v-if="byStatusReturnStr(item.states) == '已驳回'"
+                 width='100px' alt="" class="rjgm-status">
+
+            <div class="show-details-rj" @click="getOneWithdraw(item.id)">
+              <img src="../assets/novicefaqa.png" alt="">
+            </div>
 
           </li>
+
         </ul>
       </section>
       <ul class="footer">
@@ -73,7 +77,82 @@
     </section>
   </div>
 </template>
+<style>
+  .show-details-rj
+  {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+  }
+  .rjgm-status{
+    position: absolute;
+    right: 10px;
+    bottom: 12px;
+    color: #0c9fff;
+    font-weight: 900;
+    font-size: 0.3rem;
+  }
+  .my-p2{
+    height: 0.4rem;
+    line-height: 0.4rem;
+    color: #ddd;
+    font-size: 0.28rem;
+    margin-top: 10px!important;
+  }
+  .delete-b{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #c80000;
+  }
+  .right-b{
+    float: left;
+    text-align: left!important;
+  }
+  .which-b{
+    font-size: 0.32rem;
+    color: #fff;
+    text-indent: 1em;
+    font-weight: 900;
+    line-height: 0.5rem;
+    height: 0.5rem;
+    text-align: left!important;
+  }
+  .tabs_list>li{
+    overflow: hidden;
+    position: relative;
+  }
+  .bak-logo{
+    float: left;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  #mybtn-b {
+    margin-bottom: 10px;
+    margin-top: 58px;
+    z-index: 100;
+    width: 100%;
+    height: 0.8rem;
+    text-align: left!important;
+    font-size: 0.3rem;
+    line-height: 0.8rem;
+    background: #fff!important;
+    text-indent: 2em;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 
+  }
+</style>
 <script>
   export default {
     name: 'WithdrawList',
@@ -119,10 +198,10 @@
             str = '审核中'
             break
           case 2:
-            str = '审核通过'
+            str = '已通过'
             break
           case 3:
-            str = '审核未通过'
+            str = '已驳回'
             break
           default:
             str = '未知状态'
