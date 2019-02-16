@@ -31,7 +31,7 @@
     font-size: 0.3rem!important;
     position: relative;
     background: #015fa3!important;"
-              @click="getOneOrder(item.id)"
+
           >
             <p style="text-align: left!important;" class="my-p2"> 订单时间: {{item.create_time}}</p>
             <p style="text-align: left!important;" class="my-p2"> 订单金额: {{item.money}}</p>
@@ -52,7 +52,7 @@
       <div style="position:fixed;bottom: 0.95rem;
                   left: 0;
                   width: 100%;
-                  /*background:#000;*/
+                  background:#fff;
                   height: 0.8rem;
                   font-size: 0.3rem;
                   font-weight: 700;

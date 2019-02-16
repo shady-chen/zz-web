@@ -25,6 +25,7 @@ import MyTeam from '@/components/MyTeam'
 import showAllSons from '@/components/showAllSons'
 import Rules from '@/components/Rules'
 import ForgetPwd from '@/components/ForgetPwd'
+import OrderAll from '@/components/OrderAll'
 
 Vue.use(Router)
 
@@ -154,6 +155,11 @@ export default new Router({
       path: '/ForgetPwd',
       name: 'ForgetPwd',
       component: ForgetPwd
+    },
+    {
+      path: '/OrderAll',
+      name: 'OrderAll',
+      component: OrderAll
     }
   ]
 })

@@ -49,14 +49,31 @@
 
       </section>
 
-
+      <div style="
+                  position:fixed;bottom: 1.25rem;
+                  right: 0.1rem;
+                  width: 1.5rem;
+                  background:#ff4c0c;
+                  height: 1.5rem;
+                  font-size: 14px;
+                  font-weight: 700;
+                  border-radius:50%;
+                  line-height: 1.5rem;
+                  color: #fff;
+                  z-index: 2;"
+           @click="submitAll()"
+           v-show="orderData.length >= 2"
+      >
+        结算所有
+      </div>
       <div style="position:fixed;bottom: 0.95rem;
                   left: 0;
                   width: 100%;
-                  /*background:#000;*/
+                  background:#fff;
                   height: 0.8rem;
                   font-size: 0.3rem;
                   font-weight: 700;
+                  text-align: left!important;
                   line-height: 0.8rem;
                   padding: 0 20px;">
            累计条数：{{count}}
@@ -191,9 +208,7 @@
           },
         ).then(
           (res) => {
-
             if (res.body.status == 0) {
-              console.log(res)
               this.mui.alert(res.body.msg, '提示', '确认')
             }
             if (res.body.status == 200) {
@@ -233,6 +248,10 @@
             break
         }
         return str
+      },
+
+      submitAll(){
+          window.location.href = '/#/OrderAll';
       }
     },
     created () {

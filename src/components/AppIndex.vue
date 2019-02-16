@@ -131,7 +131,7 @@
     overflow: hidden;
     font-weight: 700;
     color: #fff;
-    text-indent: 2em;
+    text-indent: 1em;
   }
   .lingqu{
     width: 100px;
