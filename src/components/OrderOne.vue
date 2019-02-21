@@ -12,9 +12,8 @@
       <p style="font-size: 0.3rem;color: #000;margin-bottom: 15px;margin-top: 15px;">订单信息</p>
 
 
-
       <ul class="tabs_list">
-        <li class="list_item " id="liste"  style="
+        <li class="list_item " id="liste" style="
     width: 90%!important;
     margin: 10px auto!important;
     border: 1px solid #d7d7d7!important;
@@ -63,7 +62,8 @@
             <p class="which-b"
                style="text-align: left!important;">{{orderData.sys_bank_which}}&nbsp;{{orderData.sys_bank_where?('('+orderData.sys_name+')'):''}}</p>
             <p class="which-b"
-               style="text-align: left!important;">{{orderData.sys_bank_where?orderData.sys_bank_where:orderData.sys_name}}</p>
+               style="text-align: left!important;">
+              {{orderData.sys_bank_where?orderData.sys_bank_where:orderData.sys_name}}</p>
             <p class="which-b"
                style="text-align: left!important;">{{orderData.sys_bank_num}}</p>
           </div>
@@ -71,6 +71,20 @@
 
         </li>
       </ul>
+
+      <button type="button"
+              class="cpbtn"
+              v-clipboard:copy="orderData.sys_bank_num"
+              v-clipboard:success="onCopy"
+              v-clipboard:error="onError">复制银行卡号
+      </button>
+
+      <button type="button"
+              class="cpbtn"
+              v-clipboard:copy="orderData.sys_name"
+              v-clipboard:success="onCopy"
+              v-clipboard:error="onError">复制姓名
+      </button>
 
       <div style="text-align: left!important;width: 90%;;overflow: hidden;margin:0 auto;">
         <span style="
@@ -99,7 +113,8 @@
                style="position:relative;z-index: 22;top: -41px;opacity: 0">
         <input type="hidden" name="order_id" value="orderData.id">
         <img src="" id="img" alt="" width="200px" height="100px">
-        <button v-show="flag" type="submit" style="background: #0197ff;color: #fff; display: block;margin:15px auto;" class="mt-btn">
+        <button v-show="flag" type="submit" style="background: #0197ff;color: #fff; display: block;margin:15px auto;"
+                class="mt-btn">
           上传凭证
         </button>
       </form>
@@ -110,12 +125,21 @@
   </div>
 </template>
 <style>
+  .cpbtn {
+    padding: 5px 10px!important;
+    float: left;
+    margin-left: 18px!important;
+    background: #015fa3;
+    color: #fff;
+    margin-bottom: 15px!important;
+  }
+
   .img-wrap {
     position: relative;
     border: 1px solid #00acff;
     width: 80%;
-    margin-left: 10%!important;
-    padding: 13px 0!important;
+    margin-left: 10% !important;
+    padding: 13px 0 !important;
     background: #00acff;
     color: #fff;
     -webkit-border-radius: 5px;
@@ -123,13 +147,14 @@
     border-radius: 5px;
     z-index: 1;
   }
-  .show-details-rj
-  {
+
+  .show-details-rj {
     position: absolute;
     right: 10px;
     top: 12px;
   }
-  .rjgm-status{
+
+  .rjgm-status {
     position: absolute;
     right: 10px;
     bottom: 12px;
@@ -137,14 +162,16 @@
     font-weight: 900;
     font-size: 0.3rem;
   }
-  .my-p2{
+
+  .my-p2 {
     height: 0.4rem;
     line-height: 0.4rem;
     color: #ddd;
     font-size: 0.28rem;
-    margin-top: 10px!important;
+    margin-top: 10px !important;
   }
-  .delete-b{
+
+  .delete-b {
     width: 20px;
     height: 20px;
     line-height: 20px;
@@ -159,52 +186,51 @@
     right: 0;
     background: #c80000;
   }
-  .right-b{
+
+  .right-b {
     float: left;
-    text-align: left!important;
+    text-align: left !important;
   }
-  .which-b{
+
+  .which-b {
     font-size: 0.32rem;
     color: #fff;
     text-indent: 1em;
     font-weight: 900;
     line-height: 0.5rem;
     height: 0.5rem;
-    text-align: left!important;
+    text-align: left !important;
   }
-  .tabs_list>li{
+
+  .tabs_list > li {
     overflow: hidden;
     position: relative;
   }
-  .bak-logo{
+
+  .bak-logo {
     float: left;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
   }
+
   #mybtn-b {
     margin-bottom: 10px;
     margin-top: 58px;
     z-index: 100;
     width: 100%;
     height: 0.8rem;
-    text-align: left!important;
+    text-align: left !important;
     font-size: 0.3rem;
     line-height: 0.8rem;
-    background: #fff!important;
+    background: #fff !important;
     text-indent: 2em;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 
   }
 </style>
-<style>
 
-  .ord{
-    background: #ff2d27;
-    border: 1px solid #ff2d27;
-  }
-</style>
 <script>
   export default {
     name: 'OrderOne',
@@ -216,10 +242,17 @@
         remark: '',
         str: '请上传您的转账凭证',
         flag: false,
-        src:'',
+        src: '',
       }
     },
     methods: {
+      onCopy: function (e) {
+        this.mui.alert('复制成功！', '提示', '确认')
+      },
+      onError: function (e) {
+        console.log(e)
+        alert('Failed to copy texts')
+      },
       getOne () {
         let self = this
         this.$http.post(this.$store.state.basePath + '/user/date/oneOrder',
@@ -263,21 +296,20 @@
       },
       onChange: function (event) {
         this.picture = event.target.files[0] // get input file object
-        console.log(this.picture);
+        console.log(this.picture)
         //this.src = this.picture.name;
         this.str = '你已上传，请提交审核'
-        this.flag = true;
+        this.flag = true
 
-        let flObj=document.getElementById("file")
-        let file=flObj.files[0];                 //因为每次只上传了一张图片，所以获取到flObj.files[0];    
+        let flObj = document.getElementById('file')
+        let file = flObj.files[0]                 //因为每次只上传了一张图片，所以获取到flObj.files[0];    
 
-        let fReader=new FileReader();
+        let fReader = new FileReader()
 
         fReader.readAsDataURL(file)
 
-        fReader.onload=function(e)
-        {
-          document.getElementById("img").src= this.result
+        fReader.onload = function (e) {
+          document.getElementById('img').src = this.result
         }
 
       },

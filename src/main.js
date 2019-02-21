@@ -12,11 +12,13 @@ import '../static/lib/css/layer.css'
 import '../static/css/common.css'
 import '../static/js/wapframwork.js'
 import VueResource from 'vue-resource'
+import VCP from 'vue-clipboard2'
 
 Vue.config.productionTip = true
 Vue.prototype.mui = mui
 
 Vue.use(VueResource)
+Vue.use(VCP)
 Vue.http.interceptors.push(function (request, next) {
   request.credentials = true
   next()
@@ -27,8 +29,8 @@ const store = new Vuex.Store({
   state: {
     flag: true,
     asd: 1,
-    basePath: 'http://zz.cn',
-    myBasePath: 'http://zz.cn',
+    basePath: '',
+    myBasePath: '',
     count: 0,//红包个数
     expect: 20181212001,//红包期数
   }
